@@ -30,3 +30,7 @@ D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.dll
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.pdb
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\EntityFramework.dll
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\EntityFramework.SqlServer.dll
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\EntityFramework.xml
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\EntityFramework.SqlServer.xml
