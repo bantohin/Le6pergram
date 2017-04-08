@@ -47,6 +47,11 @@ namespace Le6pergram.Web
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user)
         {
+            if(user.RepeatPassword != user.Password)
+            {
+                return RedirectToAction("Create");
+                //TODO: Add notification
+            }
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
