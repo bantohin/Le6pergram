@@ -17,6 +17,7 @@ namespace Le6pergram.Web.Configurations
                 uf.ToTable("UsersFollowers");
             });
             this.Ignore(u => u.RepeatPassword);
+            this.Ignore(u => u.picturesCount);
         }
     }
 }

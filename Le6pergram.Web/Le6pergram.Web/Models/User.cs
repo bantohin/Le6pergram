@@ -11,7 +11,7 @@
             this.Following = new HashSet<User>();
         }
 
-        private int picturesCount;
+        public int picturesCount;
 
         public int Id { get; set; }
 
