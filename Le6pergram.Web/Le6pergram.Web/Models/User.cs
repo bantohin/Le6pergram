@@ -27,6 +27,9 @@
 
         public string Password { get; set; }
 
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(50)]
+        [Index("IX_User_Email", IsUnique = true)]
         public string Email { get; set; }
 
         public string RepeatPassword { get; set; }

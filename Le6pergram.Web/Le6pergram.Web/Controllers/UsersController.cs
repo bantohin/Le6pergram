@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,7 +48,28 @@ namespace Le6pergram.Web
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user)
         {
-            if(user.RepeatPassword != user.Password)
+            Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Regex passRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$");
+
+            if (!emailRegex.IsMatch(user.Email))
+            {
+                return RedirectToAction("Create");
+                //TODO: Add notification
+            }
+
+            if (user.Username.Length < 3 || user.Username.Length > 50)
+            {
+                return RedirectToAction("Create");
+                //TODO: Add notification
+            }
+
+            if (!passRegex.IsMatch(user.Password))
+            {
+                return RedirectToAction("Create");
+                //TODO: Add notification
+            }
+
+            if (user.RepeatPassword != user.Password)
             {
                 return RedirectToAction("Create");
                 //TODO: Add notification
