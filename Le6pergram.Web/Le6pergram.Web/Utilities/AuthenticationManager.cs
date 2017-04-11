@@ -9,17 +9,17 @@ namespace Le6pergram.Web.Utilities
     {
         static User currentUser;
 
-        static bool IsUserExisting(string username)
+        public static bool IsUserExisting(string username, string password)
         {
             using (Le6pergramDatabase context = new Le6pergramDatabase())
             {
-                return context.Users.Any(u => u.Name == username);
+                return context.Users.Any(u => u.Name == username && u.Password == password);
             }
         }
 
-        static void SetCurrentUser(string username)
+        public static void SetCurrentUser(string username, string password)
         {
-            if (IsUserExisting(username))
+            if (IsUserExisting(username, password))
             {
                 currentUser = GetLoggedUser(username);
             }
@@ -29,7 +29,7 @@ namespace Le6pergram.Web.Utilities
             }
         }
 
-        static User GetAuthenticated()
+        public static User GetAuthenticated()
         {
             if(currentUser != null)
             {
@@ -41,7 +41,7 @@ namespace Le6pergram.Web.Utilities
             }
         }
 
-        static User GetLoggedUser(string username)
+        public static User GetLoggedUser(string username)
         {
             using (Le6pergramDatabase context = new Le6pergramDatabase())
             {

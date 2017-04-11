@@ -36,6 +36,34 @@ namespace Le6pergram.Web
             return View(user);
         }
 
+        // GET: Users/Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+
+        // POST: Users/Login
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string username, string password)
+        {
+            var user = new User();
+            if (ModelState.IsValid)
+            {
+                if (Utilities.AuthenticationManager.IsUserExisting(username, password))
+                {
+                    Utilities.AuthenticationManager.SetCurrentUser(username, password);
+                    user = Utilities.AuthenticationManager.GetAuthenticated();
+                }
+                return RedirectToAction("Index");
+            }
+
+            return View(user);
+        }
+
         // GET: Users/Create
         public ActionResult Create()
         {
@@ -82,6 +110,8 @@ namespace Le6pergram.Web
 
             return View(user);
         }
+
+
 
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
