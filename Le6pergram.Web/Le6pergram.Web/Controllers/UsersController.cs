@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Le6pergram.Web.Validations;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -48,32 +49,30 @@ namespace Le6pergram.Web
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user)
         {
-            Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Regex passRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$");
-
-            if (!emailRegex.IsMatch(user.Email))
+            if (!UserValidations.ValidateEmail(user.Email))
             {
                 return RedirectToAction("Create");
                 //TODO: Add notification
             }
 
-            if (user.Username.Length < 3 || user.Username.Length > 50)
+            if (!UserValidations.ValidateUsername(user.Username))
             {
                 return RedirectToAction("Create");
                 //TODO: Add notification
             }
 
-            if (!passRegex.IsMatch(user.Password))
+            if (!UserValidations.ValidatePassword(user.Password))
             {
                 return RedirectToAction("Create");
                 //TODO: Add notification
             }
 
-            if (user.RepeatPassword != user.Password)
+            if (!UserValidations.ValidateRepeatedPassword(user.Password, user.RepeatPassword))
             {
                 return RedirectToAction("Create");
                 //TODO: Add notification
             }
+
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
