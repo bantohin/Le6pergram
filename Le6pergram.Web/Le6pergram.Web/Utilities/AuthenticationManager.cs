@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 
 namespace Le6pergram.Web.Utilities
 {
@@ -49,6 +50,7 @@ namespace Le6pergram.Web.Utilities
             }
         }
 
+        [WebMethod]
         public static void LogoutUser()
         {
             currentUser = null;            
