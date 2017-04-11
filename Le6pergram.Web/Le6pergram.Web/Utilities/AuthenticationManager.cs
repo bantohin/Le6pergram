@@ -48,5 +48,10 @@ namespace Le6pergram.Web.Utilities
                 return context.Users.Where(u => u.Username == username).FirstOrDefault();
             }
         }
+
+        public static void LogoutUser()
+        {
+            currentUser = null;            
+        }
     }
 }
