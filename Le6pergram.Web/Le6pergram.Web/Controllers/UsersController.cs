@@ -105,6 +105,7 @@ namespace Le6pergram.Web
             {
                 db.Users.Add(user);
                 db.SaveChanges();
+                Utilities.AuthenticationManager.SetCurrentUser(user.Username, user.Password);
                 return RedirectToAction("Index");
             }
 
