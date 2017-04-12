@@ -24,6 +24,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Register", "Create", "Users")</li>
                     <li>@Html.ActionLink("Login", "Login", "Users")</li>
+                    <li><button type="button" onclick="location.href='@Url.Action("Logout", "Users")'">Logout</button></li>
                     @*<li>@Html.ActionLink("Logout", "Index", "Home", new { @id = "logoutButton" })</li>*@
                 </ul>
             </div>            
