@@ -17,15 +17,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Register", "Create", "Users")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Users")</li>
-                    <li><button type="button" onclick="location.href='@Url.Action("Logout", "Users")'">Logout</button></li>
-                    @*<li>@Html.ActionLink("Logout", "Index", "Home", new { @id = "logoutButton" })</li>*@
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>                    
+                    @if (AuthManager.GetAuthenticated() == null)
+                    {
+                        <li>@Html.ActionLink("Register", "Create", "Users")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Users")</li>
+                    }                                   
+                    @if (AuthManager.GetAuthenticated() != null)
+                    {
+                        <li><button type="button" onclick="location.href='@Url.Action("Logout", "Users")'">Logout</button></li>
+                    }                   
                 </ul>
             </div>            
         </div>
@@ -37,10 +42,8 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-    <asp:ScriptManager ID="ScriptMgr" runat="server" EnablePageMethods="true"></asp:ScriptManager>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <script src="~/Utilities/LogoutUtility.js" type="text/javascript"></script>
+    @RenderSection("scripts", required: false)    
 </body>
 </html>

@@ -32,14 +32,7 @@ namespace Le6pergram.Web.Utilities
 
         public static User GetAuthenticated()
         {
-            if(currentUser != null)
-            {
-                return currentUser;
-            }
-            else
-            {
-                throw new InvalidOperationException("u suk");
-            }
+            return currentUser;
         }
 
         public static User GetLoggedUser(string username)

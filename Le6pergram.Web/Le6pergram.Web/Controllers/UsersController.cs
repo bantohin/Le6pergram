@@ -184,7 +184,7 @@ namespace Le6pergram.Web
         [ActionName("Logout")]
         public ActionResult LogoutUser()
         {
-            AuthManager.LogoutUser();
+            AuthManager.LogoutUser();            
             return RedirectToAction("Login");
         }
     }
