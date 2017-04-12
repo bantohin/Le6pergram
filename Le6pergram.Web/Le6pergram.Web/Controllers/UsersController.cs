@@ -1,4 +1,5 @@
-﻿using Le6pergram.Web.Validations;
+﻿using Le6pergram.Web.Utilities;
+using Le6pergram.Web.Validations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Le6pergram.Web
 {
@@ -53,10 +55,10 @@ namespace Le6pergram.Web
             var user = new User();
             if (ModelState.IsValid)
             {
-                if (Utilities.AuthenticationManager.IsUserExisting(username, password))
+                if (Utilities.AuthManager.IsUserExisting(username, password))
                 {
-                    Utilities.AuthenticationManager.SetCurrentUser(username, password);
-                    user = Utilities.AuthenticationManager.GetAuthenticated();
+                    Utilities.AuthManager.SetCurrentUser(username, password);
+                    user = Utilities.AuthManager.GetAuthenticated();
                 }
                 return RedirectToAction("Index");
             }
@@ -105,7 +107,7 @@ namespace Le6pergram.Web
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                Utilities.AuthenticationManager.SetCurrentUser(user.Username, user.Password);
+                Utilities.AuthManager.SetCurrentUser(user.Username, user.Password);
                 return RedirectToAction("Index");
             }
 
@@ -177,6 +179,13 @@ namespace Le6pergram.Web
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        
+        [ActionName("Logout")]
+        public ActionResult LogoutUser()
+        {
+            AuthManager.LogoutUser();
+            return RedirectToAction("Login");
         }
     }
 }

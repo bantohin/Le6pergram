@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Le6pergram.Web.Utilities;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -23,14 +24,11 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Register", "Create", "Users")</li>
                     <li>@Html.ActionLink("Login", "Login", "Users")</li>
-                    <li>@Html.ActionLink("Logout", "Index", "Home", new { @id = "logoutButton" })</li>
-                    @*<div style="display: none;">
-                        <asp:Button runat="server" OnClick="ButtonClickHandlerMethod" />*@
-                    </div>
+                    @*<li>@Html.ActionLink("Logout", "Index", "Home", new { @id = "logoutButton" })</li>*@
                 </ul>
-            </div>
+            </div>            
         </div>
-    </div>
+    </div>    
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -38,10 +36,10 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
+    <asp:ScriptManager ID="ScriptMgr" runat="server" EnablePageMethods="true"></asp:ScriptManager>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script src="~/Utilities/LogoutUtility.js"></script>        
+    <script src="~/Utilities/LogoutUtility.js" type="text/javascript"></script>
 </body>
 </html>

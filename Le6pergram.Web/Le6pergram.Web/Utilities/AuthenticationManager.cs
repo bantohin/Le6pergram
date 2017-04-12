@@ -6,7 +6,7 @@ using System.Web.Services;
 
 namespace Le6pergram.Web.Utilities
 {
-    public class AuthenticationManager
+    public class AuthManager
     {
         static User currentUser;
 
@@ -49,10 +49,10 @@ namespace Le6pergram.Web.Utilities
                 return context.Users.Where(u => u.Username == username).FirstOrDefault();
             }
         }
-
-        [WebMethod]
+        
         public static void LogoutUser()
         {
+            Console.WriteLine("go6uu");
             currentUser = null;            
         }
     }
