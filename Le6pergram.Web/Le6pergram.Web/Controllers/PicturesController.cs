@@ -50,14 +50,14 @@ namespace Le6pergram.Web
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] CreatePictureViewModel picture)
+        public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] CreatePictureViewModel picture, HttpPostedFileBase ContentFile)
         {
             
             if (ModelState.IsValid)
             {
                 var currentUserId = Utilities.AuthManager.GetAuthenticated().Id;
                 var description = picture.Description;
-                var contentFile = picture.ContentFile;
+                var contentFile = ContentFile;
 
                 var content = PictureToByteArray(contentFile);
                 var pictureEntity = new Picture()
