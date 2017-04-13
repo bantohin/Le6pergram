@@ -10,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace Le6pergram.Web
 {
@@ -59,8 +61,13 @@ namespace Le6pergram.Web
                 {
                     Utilities.AuthManager.SetCurrentUser(username, password);
                     user = Utilities.AuthManager.GetAuthenticated();
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                else
+                {
+                    //TODO: clear form
+                    //TODO: show notification
+                }
             }
 
             return View(user);

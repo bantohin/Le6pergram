@@ -18,24 +18,28 @@
                     <span class="icon-bar"></span>
                 </button>
                 @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-                <img style="width: 143px; height: 55px;" class="le6pergramLogo" src="~/Content/le6pergram.jpg" onclick="location.href='@Url.Action("Index","Home")'"/>
+                <img style="width: 143px; height: 55px;" class="le6pergramLogo" src="~/Content/le6pergram.jpg" onclick="location.href='@Url.Action("Index","Home")'" />
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>                    
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (AuthManager.GetAuthenticated() == null)
                     {
                         <li>@Html.ActionLink("Register", "Create", "Users")</li>
                         <li>@Html.ActionLink("Login", "Login", "Users")</li>
-                    }                                   
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     @if (AuthManager.GetAuthenticated() != null)
                     {
-                        <li><button type="button" onclick="location.href='@Url.Action("Logout", "Users")'">Logout</button></li>
-                    }                   
+                        <li>@Html.ActionLink("Upload Photo", "Create", "Photo")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                        <li>@Html.ActionLink("Hello " + AuthManager.GetAuthenticated().Username, "Details/" + AuthManager.GetAuthenticated().Id, "Users")</li>
+                    }
                 </ul>
-            </div>            
+            </div>
         </div>
-    </div>    
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -45,6 +49,6 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)    
+    @RenderSection("scripts", required: false)
 </body>
 </html>
