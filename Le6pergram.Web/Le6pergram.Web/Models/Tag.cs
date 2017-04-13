@@ -15,8 +15,7 @@ namespace Le6pergram.Web.Models
         public string Name { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
-
-        //Ignore
+        
         public int picturesCount { get; set; }
     }
 }

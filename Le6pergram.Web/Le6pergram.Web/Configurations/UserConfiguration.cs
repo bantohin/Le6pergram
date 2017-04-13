@@ -18,6 +18,12 @@ namespace Le6pergram.Web.Configurations
             });
             this.Ignore(u => u.RepeatPassword);
             this.Ignore(u => u.PicturesCount);
+
+            this.HasMany(u => u.Pictures)
+                .WithRequired(p => p.User);
+
+            this.HasMany(u => u.Comments)
+                .WithRequired(c => c.User);
         }
     }
 }

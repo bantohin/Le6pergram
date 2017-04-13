@@ -13,6 +13,7 @@
             this.PicturesCount = Pictures.Count;
             this.Followers = new HashSet<User>();
             this.Following = new HashSet<User>();
+            this.Comments = new HashSet<Comment>();
         }
 
         public int Id { get; set; }
@@ -45,5 +46,7 @@
         public virtual Picture ProfilePicture { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

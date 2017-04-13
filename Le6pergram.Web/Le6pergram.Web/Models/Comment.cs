@@ -15,7 +15,7 @@ namespace Le6pergram.Web.Models
 
         public string Content { get; set; }
 
-        public virtual User Author { get; set; }
+        public virtual User User { get; set; }
 
         public virtual Picture Picture { get; set; }
 

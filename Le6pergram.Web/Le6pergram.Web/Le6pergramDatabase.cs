@@ -1,9 +1,7 @@
-﻿using Le6pergram.Web.Configurations;
-using System;
-using System.Collections.Generic;
+﻿using Le6pergram.Web;
+using Le6pergram.Web.Configurations;
+using Le6pergram.Web.Models;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 public class Le6pergramDatabase : DbContext
 {    
@@ -15,10 +13,18 @@ public class Le6pergramDatabase : DbContext
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
+        modelBuilder.Configurations.Add(new PictureConfiguration());
         modelBuilder.Configurations.Add(new UserConfiguration());
+
+        modelBuilder.Entity<Tag>()
+            .Ignore(t => t.picturesCount);
 
         base.OnModelCreating(modelBuilder);
     }
 
-    public System.Data.Entity.DbSet<Le6pergram.Web.User> Users { get; set; }
+    public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<Picture> Pictures { get; set; }
+
+    public virtual DbSet<Tag> Tags { get; set; }    
 }

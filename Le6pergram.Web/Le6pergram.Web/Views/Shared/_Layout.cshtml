@@ -32,7 +32,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (AuthManager.GetAuthenticated() != null)
                     {
-                        <li>@Html.ActionLink("Upload Photo", "Create", "Photo")</li>
+                        <li>@Html.ActionLink("Upload Photo", "Create", "Pictures")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
                         <li>@Html.ActionLink("Hello " + AuthManager.GetAuthenticated().Username, "Details/" + AuthManager.GetAuthenticated().Id, "Users")</li>
                     }
