@@ -1,5 +1,6 @@
 ﻿using Le6pergram.Web;
 using Le6pergram.Web.Configurations;
+using Le6pergram.Web.Initializers;
 using Le6pergram.Web.Models;
 using System.Data.Entity;
 
@@ -8,7 +9,7 @@ public class Le6pergramDatabase : DbContext
 
     public Le6pergramDatabase() : base("name=Le6pergramDatabase")
     {
-        Database.SetInitializer(new DropCreateDatabaseAlways<Le6pergramDatabase>());
+        Database.SetInitializer(new MyInitializer());
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
