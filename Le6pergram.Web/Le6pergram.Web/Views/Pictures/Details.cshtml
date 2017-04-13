@@ -32,9 +32,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            <img src="data:image;base64,@System.Convert.ToBase64String(Model.Content)" />
         </dd>
-
     </dl>
 </div>
 <p>

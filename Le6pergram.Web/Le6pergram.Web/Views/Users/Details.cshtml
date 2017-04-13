@@ -5,38 +5,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+@*<h2>Details</h2>*@
 
 <div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-
-        <dd>
+    @*<h4>User</h4>*@
+    <br />
+    <br />
+    <div class="jumbotron row">
+        <div class="col-md-3">
+            @if (Model.ProfilePicture != null)
+            {                
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.ProfilePicture.Content)" width="152" height="152" class="img-circle"/>
+            } 
+        </div>
+        @*<div class="container col-md-3">            
             @Html.DisplayFor(model => model.Username)
-        </dd>       
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Biography)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Biography)
-        </dd>
-    </dl>
+        </div>*@
+        <div class="col-md-9">
+            <div class="container col-md-4">
+                Publications:
+                <b>@Html.DisplayFor(model => model.PicturesCount)</b>
+            </div>
+            <div class="container col-md-4">
+                Following:
+                <b>@Html.DisplayFor(model => model.Following.Count)</b>                                
+            </div>              
+            <div class="containter col-md-4">
+                Followers:
+                <b>@Html.DisplayFor(model => model.Followers.Count)</b>                               
+            </div>
+            <div class="container col-md-4">
+                <h2><i>@Html.DisplayFor(model => model.Username)</i></h2>
+            </div>
+            @if (AuthManager.GetAuthenticated() != null)
+            {
+                <div class="container col-md-4">
+                    @Html.ActionLink("Edit your profile", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default", style = "margin-top: 22px" })
+                </div>
+            }            
+        </div>                                  
+        <hr /> 
+    </div>   
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+<p>    
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

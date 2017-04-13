@@ -27,7 +27,6 @@ D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Newtonsoft.Json.xml
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Microsoft.ApplicationInsights.xml
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Microsoft.AI.DependencyCollector.xml
-D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.dll
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.pdb
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\EntityFramework.dll
@@ -106,3 +105,4 @@ C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram.Web\
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.dll
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.pdb
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
