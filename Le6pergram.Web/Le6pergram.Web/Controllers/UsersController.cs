@@ -187,11 +187,18 @@ namespace Le6pergram.Web
             }
             base.Dispose(disposing);
         }
-        
+
         [ActionName("Logout")]
         public ActionResult LogoutUser()
         {
-            AuthManager.LogoutUser();            
+            AuthManager.LogoutUser();
+            return RedirectToAction("Login");
+        }
+
+        [ActionName("Search")]
+        public ActionResult SearchUser(string searchedUsername)
+        {
+            Console.WriteLine(searchedUsername);
             return RedirectToAction("Login");
         }
     }

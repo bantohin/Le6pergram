@@ -29,6 +29,10 @@
                         <li>@Html.ActionLink("Login", "Login", "Users")</li>
                     }
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><input id="searchingTextbox" type="text" placeholder="Search through users..." /></li>
+                    <li><input type="button" onclick="location.href='@Url.Action("Search","Users")'" value="&#x1f50d"/></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (AuthManager.GetAuthenticated() != null)
                     {
