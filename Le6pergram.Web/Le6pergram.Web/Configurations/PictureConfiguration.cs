@@ -8,7 +8,7 @@
     {
         public PictureConfiguration()
         {
-            this.Ignore(p => p.ContentFile);
+            //this.Ignore(p => p.ContentFile);
         }
     }
 }

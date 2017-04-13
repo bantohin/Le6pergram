@@ -1,4 +1,4 @@
-﻿@model Le6pergram.Web.Models.Picture
+﻿@model Le6pergram.Web.ViewModels.CreatePictureViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -14,7 +14,8 @@
     <div class="form-horizontal">
         <h4>Picture</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -26,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ContentFile, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ContentFile, new { @class = "form-control", type = "file" } )
+                @Html.TextBoxFor(model => model.ContentFile, new { @class = "form-control", type="file" })        
             </div>
         </div>
 

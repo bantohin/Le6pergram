@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Le6pergram.Web.Models;
 using System.IO;
+using Le6pergram.Web.ViewModels;
 
 namespace Le6pergram.Web
 {
@@ -49,22 +50,27 @@ namespace Le6pergram.Web
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] Picture picture)
+        public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] CreatePictureViewModel picture)
         {
+            
             if (ModelState.IsValid)
             {
-                if (picture.ContentFile != null)
-                {
-                    picture.Content = GetFileByteArray(picture.ContentFile);
-                }
+                var currentUserId = Utilities.AuthManager.GetAuthenticated().Id;
+                var description = picture.Description;
+                var contentFile = picture.ContentFile;
 
-                db.Pictures.Add(picture);
+                var content = PictureToByteArray(contentFile);
+                var pictureEntity = new Picture()
+                {
+                    Content = content,
+                    Description = description,
+                    UserId = currentUserId
+                };
+                db.Pictures.Add(pictureEntity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", picture.UserId);
-            return View(picture);
+            return View(picture);            
         }
 
         // GET: Pictures/Edit/5
@@ -135,11 +141,13 @@ namespace Le6pergram.Web
             base.Dispose(disposing);
         }
 
-        private byte[] GetFileByteArray(HttpPostedFileBase contentFile)
+        private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
         {
             MemoryStream stream = new MemoryStream();
+            Console.WriteLine("PRREHO");
             contentFile.InputStream.CopyTo(stream);
             byte[] data = stream.ToArray();
+
             return data;
         }
     }

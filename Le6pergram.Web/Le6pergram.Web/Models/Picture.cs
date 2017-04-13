@@ -14,7 +14,6 @@
             this.Comments = new HashSet<Comment>();
             this.Likes = new HashSet<User>();
             this.Tags = new HashSet<Tag>();
-            this.User = AuthManager.GetAuthenticated();
         }
 
         public int Id { get; set; }
@@ -22,17 +21,13 @@
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        [Required]
         public virtual User User { get; set; }
 
         public string Description { get; set; }
 
-        [Required]
         public byte[] Content { get; set; }
 
         //public Image ContentFile { get; set; }
-
-        public HttpPostedFileBase ContentFile { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 
