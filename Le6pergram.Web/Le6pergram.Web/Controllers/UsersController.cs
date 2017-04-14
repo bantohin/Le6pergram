@@ -1,4 +1,5 @@
-﻿using Le6pergram.Web.Utilities;
+﻿using Le6pergram.Web.Models;
+using Le6pergram.Web.Utilities;
 using Le6pergram.Web.Validations;
 using Le6pergram.Web.ViewModels;
 using System;
@@ -201,22 +202,6 @@ namespace Le6pergram.Web
         public ActionResult LogoutUser()
         {
             AuthManager.LogoutUser();
-            return RedirectToAction("Login");
-        }
-
-        [HttpPost]
-        public ActionResult SearchUser(SearchUserViewModel searchedUser)
-        {
-            string searchedUsername = searchedUser.Username;
-            var users = db.Users.ToList();
-            var matchedUsers = new List<User>();
-            foreach (var user in users)
-            {
-                if (user.Username.Contains(searchedUsername))
-                {
-                    matchedUsers.Add(user);
-                }
-            }
             return RedirectToAction("Login");
         }
 
