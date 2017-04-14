@@ -64,7 +64,7 @@ namespace Le6pergram.Web
                 {
                     AuthManager.SetCurrentUser(username, password);
                     user = AuthManager.GetAuthenticated();
-                    return RedirectToAction("Details/" +  AuthManager.GetLoggedUser(username).Id);
+                    return RedirectToAction("Details/" + AuthManager.GetLoggedUser(username).Id);
                 }
                 else
                 {
@@ -124,10 +124,9 @@ namespace Le6pergram.Web
                 user.RegisterProfilePicture = PictureToByteArray(profilePictureFile);
                 db.Users.Add(user);
                 db.SaveChanges();
-                Utilities.AuthManager.SetCurrentUser(user.Username, user.Password);
-                RedirectToAction("Index");
+                AuthManager.SetCurrentUser(user.Username, user.Password);
+                return RedirectToAction("Details/" + AuthManager.GetAuthenticated().Id, "Users");
             }
-
             return View(user);
         }
 
@@ -258,7 +257,7 @@ namespace Le6pergram.Web
 
         private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
         {
-            MemoryStream stream = new MemoryStream();            
+            MemoryStream stream = new MemoryStream();
             contentFile.InputStream.CopyTo(stream);
             byte[] data = stream.ToArray();
 
