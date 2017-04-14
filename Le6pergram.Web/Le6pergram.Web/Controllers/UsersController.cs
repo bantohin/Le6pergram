@@ -125,7 +125,7 @@ namespace Le6pergram.Web
                 db.Users.Add(user);
                 db.SaveChanges();
                 Utilities.AuthManager.SetCurrentUser(user.Username, user.Password);
-                RedirectToAction("Details/" + Utilities.AuthManager.GetAuthenticated().Id, "Users");
+                RedirectToAction("Index");
             }
 
             return View(user);

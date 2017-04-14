@@ -52,7 +52,7 @@ namespace Le6pergram.Web
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] CreatePictureViewModel picture, HttpPostedFileBase ContentFile)
         {
-            
+
             if (ModelState.IsValid)
             {
                 var currentUserId = Utilities.AuthManager.GetAuthenticated().Id;
@@ -68,9 +68,9 @@ namespace Le6pergram.Web
                 };
                 db.Pictures.Add(pictureEntity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details/" + currentUserId,"Users");
             }
-            return View(picture);            
+            return View(picture);
         }
 
         // GET: Pictures/Edit/5
