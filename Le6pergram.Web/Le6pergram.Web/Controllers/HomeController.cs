@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Le6pergram.Web.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,8 @@ namespace Le6pergram.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            User currentUser = AuthManager.GetAuthenticated();
+            return View(currentUser);
         }
 
         public ActionResult About()

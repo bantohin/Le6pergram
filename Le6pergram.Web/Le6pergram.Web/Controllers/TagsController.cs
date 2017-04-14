@@ -51,13 +51,21 @@ namespace Le6pergram.Web
             List<Tag> tagsList = new List<Tag>();
             foreach (var tag in arrayOfTagStrings)
             {
-                var currentTag = new Tag()
+                if(!IsTagExisting(tag,context))
                 {
-                    Name = tag
-                };
+                    var currentTag = new Tag()
+                    {
+                        Name = tag
+                    };
 
-                tagsList.Add(currentTag);
-                context.Tags.Add(currentTag);
+                    tagsList.Add(currentTag);
+                    context.Tags.Add(currentTag);
+                }
+                else
+                {
+                    var currentTag = context.Tags.Where(t => t.Name == tag).FirstOrDefault();
+                    tagsList.Add(currentTag);
+                }
             }
             context.SaveChanges();
 
@@ -66,6 +74,11 @@ namespace Le6pergram.Web
                 currentPicture.Tags.Add(tag);
             }
             return currentPicture;
+        }
+
+        private static bool IsTagExisting(string tag, Le6pergramDatabase context)
+        {
+            return context.Tags.Any(t => t.Name == tag);
         }
 
         // GET: Tags/Edit/5
