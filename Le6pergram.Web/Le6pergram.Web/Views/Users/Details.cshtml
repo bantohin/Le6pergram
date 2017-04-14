@@ -74,10 +74,10 @@
     </div>   
     <div class="container-fluid bg-3 text-center">
         <div class="row">
-            @foreach (var currentPicture in Model.Pictures)
+            @foreach (var currentPicture in Model.Pictures.OrderByDescending(p => p.Id))
             {
                 <div class="col-sm-4">
-                    <img src="data:image;base64,@System.Convert.ToBase64String(currentPicture.Content)" class="img-responsive" style="width:100%">
+                    <img src="data:image;base64,@System.Convert.ToBase64String(currentPicture.Content)" class="img-responsive" style="width:100%" onclick="location.href='../../Pictures/Details/' + @currentPicture.Id" >
                 </div>
             }
         </div>

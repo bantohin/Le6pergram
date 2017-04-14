@@ -188,7 +188,7 @@ namespace Le6pergram.Web
                 user.RegisterProfilePicture = PictureToByteArray(profilePictureFile);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details/" + AuthManager.GetAuthenticated().Id,"Users");
             }
             return View(user);
         }
