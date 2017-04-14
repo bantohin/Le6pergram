@@ -1,7 +1,7 @@
 ﻿@model Le6pergram.Web.User
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Username;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -42,7 +42,7 @@
                 <b>@Html.DisplayFor(model => model.Followers.Count)</b>                               
             </div>
             <div class="container col-md-4">
-                <h2><i>@Html.DisplayFor(model => model.Username)</i></h2>
+                <h22><i>@Html.DisplayFor(model => model.Username)</i></h22>
             </div>
             @if (AuthManager.GetAuthenticated() != null)
             {
