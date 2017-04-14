@@ -50,11 +50,12 @@ namespace Le6pergram.Web
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] CreatePictureViewModel picture, HttpPostedFileBase ContentFile)
+        public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] CreatePictureViewModel picture, string tags, HttpPostedFileBase ContentFile)
         {
 
             if (ModelState.IsValid)
             {
+                var tagsList = tags.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
                 var currentUserId = Utilities.AuthManager.GetAuthenticated().Id;
                 var description = picture.Description;
                 var contentFile = ContentFile;
@@ -66,9 +67,10 @@ namespace Le6pergram.Web
                     Description = description,
                     UserId = currentUserId
                 };
+                pictureEntity = TagsController.Create(tagsList, pictureEntity, db);
                 db.Pictures.Add(pictureEntity);
                 db.SaveChanges();
-                return RedirectToAction("Details/" + currentUserId,"Users");
+                return RedirectToAction("Details/" + currentUserId, "Users");
             }
             return View(picture);
         }
