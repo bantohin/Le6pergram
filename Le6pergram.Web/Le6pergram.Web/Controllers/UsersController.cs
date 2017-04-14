@@ -1,9 +1,11 @@
 ﻿using Le6pergram.Web.Utilities;
 using Le6pergram.Web.Validations;
+using Le6pergram.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -84,7 +86,7 @@ namespace Le6pergram.Web
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user)
+        public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user, HttpPostedFileBase profilePictureFile)
         {
             if (!UserValidations.ValidateEmail(user.Email))
             {
@@ -110,8 +112,15 @@ namespace Le6pergram.Web
                 //TODO: Add notification
             }
 
+            if (!UserValidations.ValidateProfilePicture(profilePictureFile))
+            {
+                return RedirectToAction("Create");
+                //TODO: Add notification
+            }
+
             if (ModelState.IsValid)
             {
+                user.RegisterProfilePicture = PictureToByteArray(profilePictureFile);
                 db.Users.Add(user);
                 db.SaveChanges();
                 Utilities.AuthManager.SetCurrentUser(user.Username, user.Password);
@@ -195,11 +204,29 @@ namespace Le6pergram.Web
             return RedirectToAction("Login");
         }
 
-        [ActionName("Search")]
-        public ActionResult SearchUser(string searchedUsername)
+        [HttpPost]
+        public ActionResult SearchUser(SearchUserViewModel searchedUser)
         {
-            Console.WriteLine(searchedUsername);
+            string searchedUsername = searchedUser.Username;
+            var users = db.Users.ToList();
+            var matchedUsers = new List<User>();
+            foreach (var user in users)
+            {
+                if (user.Username.Contains(searchedUsername))
+                {
+                    matchedUsers.Add(user);
+                }
+            }
             return RedirectToAction("Login");
+        }
+
+        private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
+        {
+            MemoryStream stream = new MemoryStream();            
+            contentFile.InputStream.CopyTo(stream);
+            byte[] data = stream.ToArray();
+
+            return data;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Le6pergram.Web.Configurations
             });
             this.Ignore(u => u.RepeatPassword);
             this.Ignore(u => u.PicturesCount);
+            this.Ignore(u => u.ProfilePictureFile);
 
             this.HasMany(u => u.Pictures)
                 .WithRequired(p => p.User);

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
 
     public class User
     {
@@ -44,6 +45,10 @@
         public virtual ICollection<User> Following { get; set; }
 
         public virtual Picture ProfilePicture { get; set; }
+
+        public byte[] RegisterProfilePicture { get; set; }
+
+        public HttpPostedFileBase ProfilePictureFile { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
 

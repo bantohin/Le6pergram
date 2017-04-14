@@ -15,8 +15,15 @@
         <div class="col-md-3">
             @if (Model.ProfilePicture != null)
             {                
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.ProfilePicture.Content)" width="152" height="152" class="img-circle"/>
-            } 
+                <img src="data:image;base64,@System.Convert.ToBase64String(Model.ProfilePicture.Content)" width="152" height="152" class="img-circle"/>
+            }
+            else
+            {
+                if (Model.RegisterProfilePicture != null)
+                {
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />
+                }
+            }
         </div>
         @*<div class="container col-md-3">            
             @Html.DisplayFor(model => model.Username)

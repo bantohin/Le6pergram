@@ -42,5 +42,13 @@ namespace Le6pergram.Web.Validations
             else
                 return false;
         }
+
+        public static bool ValidateProfilePicture(HttpPostedFileBase profPic)
+        {
+            if (profPic == null)
+                return false;
+            else
+                return true;
+        }
     }
 }

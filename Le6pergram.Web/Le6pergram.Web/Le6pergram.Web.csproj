@@ -156,6 +156,7 @@
     <Compile Include="Utilities\AuthenticationManager.cs" />
     <Compile Include="Validations\UserValidations.cs" />
     <Compile Include="ViewModels\CreatePictureViewModel.cs" />
+    <Compile Include="ViewModels\SearchUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
