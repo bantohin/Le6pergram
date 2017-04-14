@@ -13,10 +13,11 @@ namespace Le6pergram.Web.Controllers
 
         // GET: Search
         [HttpPost]
-        public ActionResult Index(SearchUserViewModel searchedUser)
+        public ActionResult Index()
         {
-            string searchedUsername = searchedUser.Username;
-            var users = db.Users.Where(u => u.Username.Contains(searchedUsername)).ToList();
+            var searchedWord = "pesho";
+            searchedWord = Request.Form["searchEngine"];
+            var users = db.Users.Where(u => u.Username.Contains(searchedWord)).ToList();
             return View(users);
         }
     }

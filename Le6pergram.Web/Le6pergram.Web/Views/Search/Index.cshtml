@@ -5,5 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Search results: @Model.Count()</h2>
+@if (Model.Count() > 0)
+{
+    <h2>Search results: @Model.Count()</h2>
+}
+else
+{
+    <h2>No users found. Try again</h2>
+}
+
+@foreach (var searchResult in Model)
+{
+    <h4><a href="../Users/Details/@searchResult.Id">@searchResult.Username</a> (@searchResult.Name)</h4>
+}
+
 
