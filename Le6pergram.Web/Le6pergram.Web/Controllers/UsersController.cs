@@ -60,11 +60,11 @@ namespace Le6pergram.Web
             var user = new User();
             if (ModelState.IsValid)
             {
-                if (Utilities.AuthManager.IsUserExisting(username, password))
+                if (AuthManager.IsUserExisting(username, password))
                 {
-                    Utilities.AuthManager.SetCurrentUser(username, password);
-                    user = Utilities.AuthManager.GetAuthenticated();
-                    return RedirectToAction("Index");
+                    AuthManager.SetCurrentUser(username, password);
+                    user = AuthManager.GetAuthenticated();
+                    return RedirectToAction("Details/" +  AuthManager.GetLoggedUser(username).Id);
                 }
                 else
                 {
@@ -203,6 +203,26 @@ namespace Le6pergram.Web
         {
             AuthManager.LogoutUser();
             return RedirectToAction("Login");
+        }
+
+        [ActionName("Follow")]
+        public ActionResult Follow(int id, int loggedId)
+        {
+            User userToFollow = db.Users.Find(id);
+            User userFollowing = db.Users.Find(loggedId);
+            userToFollow.Followers.Add(userFollowing);
+            db.SaveChanges();
+            return RedirectToAction($"Details/{id}");
+        }
+
+        [ActionName("Unfollow")]
+        public ActionResult Unfollow(int id, int loggedId)
+        {
+            User userToUnfollow = db.Users.Find(id);
+            User userUnfollowing = db.Users.Find(loggedId);
+            userToUnfollow.Followers.Remove(userUnfollowing);
+            db.SaveChanges();
+            return RedirectToAction($"Details/{id}");
         }
 
         private byte[] PictureToByteArray(HttpPostedFileBase contentFile)

@@ -10,8 +10,7 @@
     {
         public User()
         {
-            this.Pictures = new HashSet<Picture>();
-            this.PicturesCount = Pictures.Count;
+            this.Pictures = new HashSet<Picture>();            
             this.Followers = new HashSet<User>();
             this.Following = new HashSet<User>();
             this.Comments = new HashSet<Comment>();
@@ -36,9 +35,7 @@
 
         public string RepeatPassword { get; set; }
 
-        public string Biography { get; set; }
-
-        public int PicturesCount { get; set; }
+        public string Biography { get; set; }        
 
         public virtual ICollection<User> Followers { get; set; }
 

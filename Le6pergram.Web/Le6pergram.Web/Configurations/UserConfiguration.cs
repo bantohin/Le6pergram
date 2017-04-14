@@ -16,8 +16,7 @@ namespace Le6pergram.Web.Configurations
                 uf.MapRightKey("FollowerId");
                 uf.ToTable("UsersFollowers");
             });
-            this.Ignore(u => u.RepeatPassword);
-            this.Ignore(u => u.PicturesCount);
+            this.Ignore(u => u.RepeatPassword);            
             this.Ignore(u => u.ProfilePictureFile);
 
             this.HasMany(u => u.Pictures)

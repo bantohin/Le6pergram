@@ -1,6 +1,7 @@
 ﻿namespace Le6pergram.Web.Models
 {
     using Le6pergram.Web.Utilities;
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,7 @@
             this.Comments = new HashSet<Comment>();
             this.Likes = new HashSet<User>();
             this.Tags = new HashSet<Tag>();
+            this.UploadDate = DateTime.Now;
         }
 
         public int Id { get; set; }
@@ -24,6 +26,8 @@
         public virtual User User { get; set; }
 
         public string Description { get; set; }
+
+        public DateTime UploadDate { get; set; }
 
         public byte[] Content { get; set; }
 
