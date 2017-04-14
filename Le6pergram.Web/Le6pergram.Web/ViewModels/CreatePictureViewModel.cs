@@ -9,6 +9,8 @@ namespace Le6pergram.Web.ViewModels
     {
         public string Description { get; set; }
 
+        public string Tags { get; set; }  
+        
         public HttpPostedFileBase ContentFile { get; set; }
     }
 }
