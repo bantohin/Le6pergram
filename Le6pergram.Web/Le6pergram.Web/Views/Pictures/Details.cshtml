@@ -5,17 +5,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <hr />
-    <dl class="dl-horizontal" style="text-align: left;">        
-        <dd>
+    <div class="row" style="margin-top:50px">
+        <div class="col-sm-6">
             <img src="data:image;base64,@System.Convert.ToBase64String(Model.Content)" />
-        </dd>   
-        <dd>
             <h4><i>@Html.DisplayFor(model => model.Description)</i></h4>
-        </dd>
-    </dl>
+        </div>
+        <div class="col-sm-3">
+            <div>
+                <div class="col-sm-6">
+                    Username: 
+                    @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
+                </div>
+                @if (Model.User.RegisterProfilePicture != null)
+                {
+                    <div class="col-sm-6">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                    </div>
+                }
+                <hr />
+            </div>
+            Comments
+            <div>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+        </div>
+
+    </div>
+    <hr />
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("Back to List", "Index")*@
 </p>
