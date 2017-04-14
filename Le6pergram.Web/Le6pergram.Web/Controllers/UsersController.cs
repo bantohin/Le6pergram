@@ -125,7 +125,7 @@ namespace Le6pergram.Web
                 db.Users.Add(user);
                 db.SaveChanges();
                 Utilities.AuthManager.SetCurrentUser(user.Username, user.Password);
-                return RedirectToAction("Index");
+                RedirectToAction("Details/" + Utilities.AuthManager.GetAuthenticated().Id, "Users");
             }
 
             return View(user);
@@ -152,10 +152,41 @@ namespace Le6pergram.Web
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user)
+        public ActionResult Edit([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user, HttpPostedFileBase profilePictureFile)
         {
+            if (!UserValidations.ValidateEmail(user.Email))
+            {
+                return RedirectToAction("Edit");
+                //TODO: Add notification
+            }
+
+            if (!UserValidations.ValidateUsername(user.Username))
+            {
+                return RedirectToAction("Edit");
+                //TODO: Add notification
+            }
+
+            if (!UserValidations.ValidatePassword(user.Password))
+            {
+                return RedirectToAction("Edit");
+                //TODO: Add notification
+            }
+
+            if (!UserValidations.ValidateRepeatedPassword(user.Password, user.RepeatPassword))
+            {
+                return RedirectToAction("Edit");
+                //TODO: Add notification
+            }
+
+            if (!UserValidations.ValidateProfilePicture(profilePictureFile))
+            {
+                return RedirectToAction("Edit");
+                //TODO: Add notification
+            }
+
             if (ModelState.IsValid)
             {
+                user.RegisterProfilePicture = PictureToByteArray(profilePictureFile);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
