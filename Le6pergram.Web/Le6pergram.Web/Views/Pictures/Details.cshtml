@@ -6,14 +6,18 @@
 }
 <div>
     <div class="row" style="margin-top:50px">
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="text-align: center">
             <img src="data:image;base64,@System.Convert.ToBase64String(Model.Content)" />
             <h4><i>@Html.DisplayFor(model => model.Description)</i></h4>
+            @foreach (var tag in Model.Tags.ToList())
+            {
+                <div class="col-md-2">@tag.Name</div>
+            }
         </div>
         <div class="col-sm-3">
-            <div>
+            <div class="col-sm-12">
                 <div class="col-sm-6">
-                    Username: 
+                    Username
                     @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
                 </div>
                 @if (Model.User.RegisterProfilePicture != null)
@@ -22,18 +26,30 @@
                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                     </div>
                 }
-                <hr />
-            </div>
-            Comments
-            <div>
 
             </div>
+            <div class="col-sm-6">
+                <br />
+                @foreach (var comment in Model.Comments.ToList())
+                {
+                    <div class="col-sm-3">@Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")</div>
+                    <div class="col-sm-9">@comment</div>
+                }
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input type="text" placeholder="Add Comment" name="addComment" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-default" id="addCommentId" formaction="">
+                    <i>Add comment</i>
+                </button>
+            </div>            
         </div>
+
         <div class="col-sm-3">
         </div>
 
     </div>
-    <hr />
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
