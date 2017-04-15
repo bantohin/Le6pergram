@@ -10,21 +10,37 @@ namespace Le6pergram.Web.Controllers
 {
     public class CommentsController : Controller
     {
-        private static Le6pergramDatabase db = new Le6pergramDatabase();
+        private static Le6pergramDatabase db = new Le6pergramDatabase();       
 
-        public static void InsertComment(string text, int pictureId)
+        [ActionName("DeleteComment")]
+        public ActionResult DeleteComment()
         {
-            int userId = AuthManager.GetAuthenticated().Id;
+            int deleteCommentId;
+            deleteCommentId = int.Parse(Request.Form["currentCommentID"]);
+            int pictureId = int.Parse(Request.Form["CurrentPictureID"]);
+            Comment commentToDelete = db.Comments.Find(deleteCommentId);
+            db.Comments.Remove(commentToDelete);
+            db.SaveChanges();
+            return RedirectToAction("Details/" + pictureId, "Pictures");
+        }
 
-            Comment currentComment = new Comment()
+        [ActionName("AddComment")]
+        public ActionResult AddComment()
+        {
+            string newComment;
+            newComment = Request.Form["NewComment"];
+            int pictureId = int.Parse(Request.Form["currentID"]);
+            int userId = AuthManager.GetAuthenticated().Id;
+            Comment comment = new Comment()
             {
                 UserId = userId,
-                Content = text,
+                Content = newComment,
                 Picture = db.Pictures.Find(pictureId)
             };
 
-            db.Comments.Add(currentComment);
+            db.Comments.Add(comment);
             db.SaveChanges();
+            return RedirectToAction("Details/" + pictureId,"Pictures");
         }
     }
 }

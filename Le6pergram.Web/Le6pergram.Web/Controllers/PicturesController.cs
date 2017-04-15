@@ -8,6 +8,7 @@ using Le6pergram.Web.Models;
 using System.IO;
 using Le6pergram.Web.ViewModels;
 using Le6pergram.Web.Controllers;
+using Le6pergram.Web.Utilities;
 
 namespace Le6pergram.Web
 {
@@ -142,7 +143,7 @@ namespace Le6pergram.Web
             Picture picture = db.Pictures.Find(id);
             db.Pictures.Remove(picture);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details/" + AuthManager.GetAuthenticated().Id, "Users");
         }
 
         protected override void Dispose(bool disposing)
@@ -172,17 +173,7 @@ namespace Le6pergram.Web
             pic.Likes.Remove(user);
             db.SaveChanges();
             return RedirectToAction($"Details/{id}");
-        }
-
-        [ActionName("AddComment")]
-        public ActionResult AddComment()
-        {
-            string newComment;
-            newComment = Request.Form["NewComment"];
-            int id = int.Parse(Request.Form["currentID"]);
-            CommentsController.InsertComment(newComment, id);
-            return RedirectToAction("Details/" + id);
-        }
+        }        
 
         private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
         {
