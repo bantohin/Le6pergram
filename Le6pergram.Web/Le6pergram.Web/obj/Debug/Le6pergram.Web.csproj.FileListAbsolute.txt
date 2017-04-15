@@ -66,7 +66,6 @@ D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Antlr3.Runtime.
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Newtonsoft.Json.xml
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Microsoft.ApplicationInsights.xml
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Microsoft.AI.DependencyCollector.xml
-D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.dll
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.pdb
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\Le6pergram.Web.dll.config
