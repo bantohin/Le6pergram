@@ -1,7 +1,7 @@
 ﻿@model Le6pergram.Web.Models.Picture
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.User.Username + "'s picture";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
@@ -12,7 +12,7 @@
             <h4><i>@Html.DisplayFor(model => model.Description)</i></h4>
             @foreach (var tag in Model.Tags.ToList())
             {
-                <a href="../../Tags/Details/@tag.Id">@tag.Name </a>
+                <a href="../../Tags/Details/@tag.Id">#@tag.Name </a>
             }
             @if (!Model.Likes.Any(l => l.Id == AuthManager.GetAuthenticated().Id))
             {
@@ -43,7 +43,7 @@
                                             @if (like.RegisterProfilePicture != null)
                                             {
                                                 <img src="data:image;base64,@System.Convert.ToBase64String(like.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
-                                            }                                            
+                                            }
                                         </div>
                                         <div class="col-sm-3">
                                             <br />
@@ -68,8 +68,8 @@
                                             }
                                         </div>
                                     </div>
-                                }
-                            }
+                                                    }
+                                                }
 
                         </div>
                         <div class="modal-footer">

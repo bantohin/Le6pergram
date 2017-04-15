@@ -1,7 +1,7 @@
 ﻿@model Le6pergram.Web.User
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Username + "'s profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,16 +13,9 @@
     <br />
     <div class="jumbotron row">
         <div class="col-md-3">
-            @if (Model.ProfilePicture != null)
+            @if (Model.RegisterProfilePicture != null)
             {
-                <img src="data:image;base64,@System.Convert.ToBase64String(Model.ProfilePicture.Content)" width="152" height="152" class="img-circle" />
-            }
-            else
-            {
-                if (Model.RegisterProfilePicture != null)
-                {
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />
-                }
+                <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />
             }
         </div>
         @*<div class="container col-md-3">

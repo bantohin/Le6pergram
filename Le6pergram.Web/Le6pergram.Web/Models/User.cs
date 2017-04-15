@@ -42,7 +42,7 @@
 
         public virtual ICollection<User> Following { get; set; }
 
-        public virtual Picture ProfilePicture { get; set; }
+        //public virtual Picture ProfilePicture { get; set; }
 
         public byte[] RegisterProfilePicture { get; set; }
 

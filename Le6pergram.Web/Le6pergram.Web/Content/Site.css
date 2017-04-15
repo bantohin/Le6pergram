@@ -23,6 +23,14 @@ textarea {
     max-width: 280px;
 }
 
-#pictureDetails{
+#pictureDetails {
     max-width: 480px;
+}
+
+.navbar-inverse {
+    background-color: #fff;
+    border-color: rgba(8, 8, 8, 0.28);
+}
+.navbar-inverse .navbar-nav > li > a:hover{
+    color: #000000;
 }
