@@ -139,6 +139,5 @@ C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6p
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\System.Web.WebPages.xml
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\System.Web.WebPages.Deployment.xml
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\bin\System.Web.WebPages.Razor.xml
-C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.dll
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.pdb

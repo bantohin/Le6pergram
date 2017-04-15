@@ -20,7 +20,7 @@
             <h5>Likes: @Html.DisplayFor(model => model.Likes.Count)</h5>
             @foreach (var tag in Model.Tags.ToList())
             {
-                <div class="col-md-2">@tag.Name</div>
+                <a href="../../Tags/Details/@tag.Id">@tag.Name </a>
             }
         </div>
         <div class="col-sm-3">

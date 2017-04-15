@@ -164,7 +164,6 @@ namespace Le6pergram.Web
         private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
         {
             MemoryStream stream = new MemoryStream();
-            Console.WriteLine("PRREHO");
             contentFile.InputStream.CopyTo(stream);
             byte[] data = stream.ToArray();
 

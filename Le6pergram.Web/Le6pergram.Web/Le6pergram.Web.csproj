@@ -145,6 +145,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Initializers\MyInitializer.cs" />
     <Compile Include="Le6pergramDatabase.cs" />
     <Compile Include="Models\Comment.cs" />

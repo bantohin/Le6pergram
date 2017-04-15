@@ -51,7 +51,7 @@ namespace Le6pergram.Web
             List<Tag> tagsList = new List<Tag>();
             foreach (var tag in arrayOfTagStrings)
             {
-                if(!IsTagExisting(tag,context))
+                if (!IsTagExisting(tag, context))
                 {
                     var currentTag = new Tag()
                     {
@@ -145,6 +145,13 @@ namespace Le6pergram.Web
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [ActionName("DisplayTag")]
+        public ActionResult DisplayTag(int id)
+        {
+            Tag tag = db.Tags.Find(id);
+            return RedirectToAction($"Details/{id}", "Tags");
         }
     }
 }
