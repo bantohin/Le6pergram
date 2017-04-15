@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -141,6 +139,26 @@ namespace Le6pergram.Web
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [ActionName("Like")]
+        public ActionResult LikePicture(int id, int loggedId)
+        {
+            var pic = db.Pictures.Find(id);
+            var user = db.Users.Find(loggedId);
+            pic.Likes.Add(user);
+            db.SaveChanges();
+            return RedirectToAction($"Details/{id}");
+        }
+
+        [ActionName("Unlike")]
+        public ActionResult UnlikePicture(int id, int loggedId)
+        {
+            var pic = db.Pictures.Find(id);
+            var user = db.Users.Find(loggedId);
+            pic.Likes.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction($"Details/{id}");
         }
 
         private byte[] PictureToByteArray(HttpPostedFileBase contentFile)

@@ -9,6 +9,15 @@
         <div class="col-sm-6" style="text-align: center">
             <img src="data:image;base64,@System.Convert.ToBase64String(Model.Content)" />
             <h4><i>@Html.DisplayFor(model => model.Description)</i></h4>
+            @if (!Model.Likes.Any(l => l.Id == AuthManager.GetAuthenticated().Id))
+            {
+                <h5>@Html.ActionLink("Like", "Like", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+            }
+            else
+            {
+                <h5>@Html.ActionLink("Unlike", "Unlike", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+            }
+            <h5>Likes: @Html.DisplayFor(model => model.Likes.Count)</h5>
             @foreach (var tag in Model.Tags.ToList())
             {
                 <div class="col-md-2">@tag.Name</div>
