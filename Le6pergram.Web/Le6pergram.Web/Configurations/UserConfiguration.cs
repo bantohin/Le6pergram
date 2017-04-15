@@ -20,10 +20,17 @@ namespace Le6pergram.Web.Configurations
             this.Ignore(u => u.ProfilePictureFile);
 
             this.HasMany(u => u.Pictures)
-                .WithRequired(p => p.User);
+                .WithRequired(p => p.User).WillCascadeOnDelete(false);
 
             this.HasMany(u => u.Comments)
                 .WithRequired(c => c.User);
+
+            this.HasMany(u => u.LikedPictures).WithMany(p => p.Likes).Map(m =>
+            {
+                m.MapLeftKey("UserId");
+                m.MapRightKey("PictureId");
+                m.ToTable("LikesOfPicture");
+            });
         }
     }
 }
