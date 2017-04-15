@@ -12,11 +12,8 @@
     <br />
     <br />
     <div class="jumbotron row">
-        <div class="col-md-3">
-            @if (Model.RegisterProfilePicture != null)
-            {
-                <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />
-            }
+        <div class="col-md-3">            
+                <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />            
         </div>
         @*<div class="container col-md-3">
                 @Html.DisplayFor(model => model.Username)
@@ -37,7 +34,10 @@
             <div class="container col-md-4">
                 <h2><i>@Html.DisplayFor(model => model.Username)</i></h2>
             </div>
-            @if (AuthManager.GetAuthenticated() != null && AuthManager.GetAuthenticated().Id == Model.Id)
+            @{ 
+                var loggedUser = AuthManager.GetAuthenticated();
+            }
+            @if (@*AuthManager.GetAuthenticated()*@ loggedUser != null && @*AuthManager.GetAuthenticated().Id*@ loggedUser.Id == Model.Id)
             {
                 <div class="container col-md-4">
                     @Html.ActionLink("Edit your profile", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default", style = "margin-top: 22px" })
@@ -45,19 +45,19 @@
             }
             else
             {
-                var loggedUser = AuthManager.GetAuthenticated();
+                //var loggedUser = AuthManager.GetAuthenticated();
                 if (loggedUser != null)
                 {
                     if (loggedUser.Id != Model.Id && !Model.Followers.Any(u => u.Id == loggedUser.Id))
                     {
                         <div class="container col-md-4">
-                            @Html.ActionLink("Follow", "Follow", "Users", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                            @Html.ActionLink("Follow", "Follow", "Users", new { id = Model.Id, loggedId = @*AuthManager.GetAuthenticated().Id*@ loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
                         </div>
                     }
                     else if (loggedUser.Id != Model.Id && Model.Followers.Any(u => u.Id == loggedUser.Id))
                     {
                         <div class="container col-md-4">
-                            @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                            @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = Model.Id, loggedId = @*AuthManager.GetAuthenticated().Id*@ loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
                         </div>
                     }
                 }

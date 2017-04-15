@@ -20,8 +20,7 @@
         public int Id { get; set; }
 
         public string Name { get; set; }
-
-        //unique
+        
         [Column(TypeName = "VARCHAR")]
         [StringLength(50)]
         [Index("IX_User_Username",IsUnique = true)]
@@ -40,12 +39,12 @@
 
         public virtual ICollection<User> Followers { get; set; }
 
-        public virtual ICollection<User> Following { get; set; }
+        public virtual ICollection<User> Following { get; set; }        
 
-        //public virtual Picture ProfilePicture { get; set; }
-
+        //[Required]
         public byte[] RegisterProfilePicture { get; set; }
 
+        //[Required]
         public HttpPostedFileBase ProfilePictureFile { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
