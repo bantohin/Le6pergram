@@ -17,8 +17,16 @@ namespace Le6pergram.Web.Controllers
         {
             string searchedWord;
             searchedWord = Request.Form["searchEngine"];
-            var users = db.Users.Where(u => u.Username.Contains(searchedWord)).ToList();
-            return View(users);
+            if(searchedWord == null || searchedWord == "")
+            {
+                IEnumerable<User> users = new List<User>();
+                return View(users);
+            }
+            else
+            {                
+                var users = db.Users.Where(u => u.Username.Contains(searchedWord)).ToList();
+                return View(users);
+            }
         }
     }
 }
