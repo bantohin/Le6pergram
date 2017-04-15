@@ -15,7 +15,7 @@ namespace Le6pergram.Web.Controllers
         [HttpPost]
         public ActionResult Index()
         {
-            var searchedWord = "pesho";
+            string searchedWord;
             searchedWord = Request.Form["searchEngine"];
             var users = db.Users.Where(u => u.Username.Contains(searchedWord)).ToList();
             return View(users);

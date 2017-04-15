@@ -1,4 +1,4 @@
-﻿@model Le6pergram.Web.User
+﻿@model List<Le6pergram.Web.Models.Picture>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -14,20 +14,16 @@
 }
 else
 {
-    @*@{ Response.Redirect("~/Account/LogIn?returnUrl=Products");}*@
-                    @*var ne6tosi = Model.Following.Select(f => f.Pictures);
-        foreach (var usersPictures in ne6tosi)
+    <div class="row">
+        @foreach (var picture in Model)
         {
-            foreach (var picture in usersPictures.OrderByDescending(i => i.UploadDate))
-            {
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="data:image;base64,@System.Convert.ToBase64String(picture.Content)" onclick="location.href='../../Pictures/Details/' + @picture.Id"/>
-                </div>
-            </div>
+            <div class="col-md-4">
+                <img src="data:image;base64,@System.Convert.ToBase64String(picture.Content)" style="max-height: 800px; max-width: 800px;" onclick="location.href='../../Pictures/Details/' + @picture.Id"/>
+            </div>            
         }
-    }*@
-    @*<div class="row">
+    </div>
+}
+@*<div class="row">
         <div class="col-md-4">
             <h2>Getting started</h2>
             <p>
