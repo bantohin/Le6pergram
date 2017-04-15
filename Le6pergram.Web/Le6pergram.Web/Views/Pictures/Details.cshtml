@@ -103,7 +103,7 @@
                     <br />
                     @foreach (var comment in Model.Comments.ToList())
                     {
-                        if (loggedUser != null && comment.UserId == loggedUser.Id || loggedUser.Id == Model.UserId)
+                        if (loggedUser != null && comment.UserId == loggedUser.Id || (loggedUser != null && loggedUser.Id == Model.UserId ))
                         {
                             <form method="post">
                                 <button type="submit" class="close" formaction="../../Comments/DeleteComment">&times;</button>

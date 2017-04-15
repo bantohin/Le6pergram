@@ -19,13 +19,30 @@
         <h3 style="text-align: center;">@postsCount photos</h3>
     }
     <hr />
-    @foreach (var pic in Model.Pictures.OrderBy(p => p.Id).Take(20).ToList())
-    {
-        <div>
-            <img style="width: 420px; max-width: 420px; height: 420px; max-height: 420px; display: block; margin: 0 auto;" src="data:image;base64, @System.Convert.ToBase64String(pic.Content)" class="img-responsive"
-                 onclick="location.href='../../Pictures/Details/' + @pic.Id"/>
-            <br />
-            <br />
-        </div>
-    }
+    <div class="row">
+        @foreach (var picture in Model.Pictures.OrderByDescending(p => p.Id).Take(20).ToList())
+        {
+            @*<div>
+                    <img style="max-width: 420px; display: block; margin: 0 auto;" src="data:image;base64, @System.Convert.ToBase64String(pic.Content)" class="img-responsive"
+                         onclick="location.href='../../Pictures/Details/' + @pic.Id"/>
+                    <br />
+                    <br />
+                </div>*@
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="pictureIndex">
+                    <div class="userInfo">
+                        <div class="col-sm-4">
+                            <img class="profilePictureIndex" src="data:image;base64,@System.Convert.ToBase64String(picture.User.RegisterProfilePicture)" onclick="location.href='../../Users/Details/' + @picture.UserId" />
+                        </div>
+                        <div class="col-sm-4 userInfoIndex">@Html.ActionLink(picture.User.Username, "Details/" + picture.UserId, "Users")</div>
+                        <div class="col-sm-4 userInfoIndex">@picture.UploadDate.ToShortDateString()</div>
+                    </div>
+                    <img class="imgIndex" src="data:image;base64,@System.Convert.ToBase64String(picture.Content)" onclick="location.href='../../Pictures/Details/' + @picture.Id" />
+
+                </div>
+            </div>
+            <div class="col-sm-12"></div>
+        }
+    </div>
 </div>

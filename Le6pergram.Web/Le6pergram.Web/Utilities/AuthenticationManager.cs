@@ -14,7 +14,7 @@ namespace Le6pergram.Web.Utilities
 
         public static bool IsUserExisting(string username, string password)
         {            
-                return context.Users.Any(u => u.Name == username && u.Password == password);            
+                return context.Users.Any(u => u.Username == username && u.Password == password);            
         }
 
         public static void SetCurrentUser(string username, string password)
