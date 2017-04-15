@@ -5,20 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Details</h2>*@
-
 <div>
     <br />
-    <h2 style="text-align: center;">#@Model.Name</h2>
+    <h1 style="text-align: center;">#@Model.Name</h1>
     <br />
-    <h4 style="text-align: center;">@Model.picturesCount posts</h4>
+    <h3 style="text-align: center;">@Model.Pictures.Count posts</h3>
     <hr />
-    @foreach (var pic in Model.Pictures.ToList())
+    @foreach (var pic in Model.Pictures.OrderBy(p => p.Id).Take(20).ToList())
     {
-
+        <div>
+            <img style="width: 420px; max-width: 420px; height: 420px; max-height: 420px; display: block; margin: 0 auto;" src="data:image;base64, @System.Convert.ToBase64String(pic.Content)" class="img-responsive"
+                 onclick="location.href='../../Pictures/Details/' + @pic.Id"/>
+            <br />
+            <br />
+        </div>
     }
 </div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
