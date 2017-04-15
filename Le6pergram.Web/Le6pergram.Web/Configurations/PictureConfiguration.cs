@@ -8,7 +8,7 @@
     {
         public PictureConfiguration()
         {
-            //this.Ignore(p => p.ContentFile);
+            this.HasMany(p => p.Comments).WithRequired(c => c.Picture).WillCascadeOnDelete(true);
         }
     }
 }

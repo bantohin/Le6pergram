@@ -25,6 +25,8 @@
                     <h5>@Html.ActionLink("Unlike", "Unlike", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
                 }
             }
+
+
             @if (Model.Likes.Count != 1)
             {
                 <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) people</a> like this picture</h5>
@@ -90,30 +92,35 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             <div class="col-sm-12">
-                <div class="col-sm-6">
-                    Username
-                    @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
+                <div class="col-sm-2">
+                       @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
                 </div>
                 @if (Model.User.RegisterProfilePicture != null)
                 {
-                    <div class="col-sm-6">
+                    <div class="col-sm-2">
                         <img src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
-                    </div>
+                    </div>                    
+                }
+                @if (AuthManager.GetAuthenticated() != null && AuthManager.GetAuthenticated().Id == Model.UserId)
+                {
+                    <h5 class="col-sm-5">@Html.ActionLink("Delete picture", "Delete", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", id="deletePictureBtn", style = "margin-top: 22px" })</h5>
                 }
 
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <br />
                 @foreach (var comment in Model.Comments.ToList())
                 {
-                    <div class="col-sm-3">@Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")</div>
-                    <div class="col-sm-9">@comment.Content</div>
+                    <button type="button" class="close" formaction="../../Comments/DeleteComment">&times;</button>
+                    <div class="col-sm-2">@Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")</div>
+                    <div class="col-sm-offset-3 commentText">@comment.Content</div>
+                    <hr />
                 }
             </div>
             <div class="col-sm-12">
-                <form method="post" class="navbar-form navbar-left">
+                <form method="post" class="form-inline">
                     <div class="form-group">
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.NewComment, new { htmlAttributes = new { @class = "form-control", name = "NewComment" } })
@@ -129,9 +136,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-
-        <div class="col-sm-3">
         </div>
 
     </div>

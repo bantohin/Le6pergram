@@ -34,3 +34,35 @@ textarea {
 .navbar-inverse .navbar-nav > li > a:hover{
     color: #000000;
 }
+
+.pictureIndex{
+    background-color: #fff;
+    border: 2px solid rgba(8, 8, 8, 0.25);
+    width: 500px;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+.pictureIndex img{
+    width: inherit;
+    padding:10px;
+}
+
+.userInfo {
+    margin-top: 10px;
+}
+
+.userInfoIndex{
+    margin-top:12px;
+}
+
+.profilePictureIndex {
+    width:50px;
+    height:50px ;
+    border-radius:50%;
+}
+
+.commentText {
+    word-wrap: break-word;
+}
+
