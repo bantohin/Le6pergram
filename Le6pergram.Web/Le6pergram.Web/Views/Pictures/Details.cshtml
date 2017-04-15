@@ -1,4 +1,4 @@
-﻿@model Le6pergram.Web.Models.Picture
+﻿@model Le6pergram.Web.ViewModels.PictureDetailsViewModel
 
 @{
     ViewBag.Title = Model.User.Username + "'s picture";
@@ -109,16 +109,25 @@
                 @foreach (var comment in Model.Comments.ToList())
                 {
                     <div class="col-sm-3">@Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")</div>
-                    <div class="col-sm-9">@comment</div>
+                    <div class="col-sm-9">@comment.Content</div>
                 }
             </div>
             <div class="col-sm-12">
-                <div class="form-group">
-                    <input type="text" placeholder="Add Comment" name="addComment" class="form-control" />
-                </div>
-                <button type="submit" class="btn btn-default" id="addCommentId" formaction="">
-                    <i>Add comment</i>
-                </button>
+                <form method="post" class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NewComment, new { htmlAttributes = new { @class = "form-control", name = "NewComment" } })
+                        </div>
+                    </div>
+                    <div><input type="text"  value="@Model.Id" style="display:none;" name="currentID"/></div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-default" formaction="../../Pictures/AddComment">
+                                <i>Add comment</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 

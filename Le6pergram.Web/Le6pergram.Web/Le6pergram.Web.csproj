@@ -140,6 +140,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configurations\PictureConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -159,6 +160,7 @@
     <Compile Include="Utilities\AuthenticationManager.cs" />
     <Compile Include="Validations\UserValidations.cs" />
     <Compile Include="ViewModels\CreatePictureViewModel.cs" />
+    <Compile Include="ViewModels\PictureDetailsViewModel.cs" />
     <Compile Include="ViewModels\SearchUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

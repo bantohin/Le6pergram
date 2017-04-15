@@ -7,7 +7,7 @@ namespace Le6pergram.Web.Models
         public Tag()
         {
             this.Pictures = new HashSet<Picture>();
-            this.picturesCount = Pictures.Count;
+            //this.picturesCount = Pictures.Count;
         }
 
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace Le6pergram.Web.Models
 
         public virtual ICollection<Picture> Pictures { get; set; }
         
-        public int picturesCount { get; set; }
+        //public int picturesCount { get; set; }
     }
 }

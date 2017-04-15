@@ -17,8 +17,8 @@ public class Le6pergramDatabase : DbContext
         modelBuilder.Configurations.Add(new PictureConfiguration());
         modelBuilder.Configurations.Add(new UserConfiguration());
 
-        modelBuilder.Entity<Tag>()
-            .Ignore(t => t.picturesCount);
+        //modelBuilder.Entity<Tag>()
+        //    .Ignore(t => t.picturesCount);
 
         base.OnModelCreating(modelBuilder);
     }
@@ -27,5 +27,7 @@ public class Le6pergramDatabase : DbContext
 
     public virtual DbSet<Picture> Pictures { get; set; }
 
-    public virtual DbSet<Tag> Tags { get; set; }    
+    public virtual DbSet<Tag> Tags { get; set; }  
+    
+    public virtual DbSet<Comment> Comments { get; set; }
 }

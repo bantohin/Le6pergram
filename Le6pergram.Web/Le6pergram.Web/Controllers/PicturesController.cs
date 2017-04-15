@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Le6pergram.Web.Models;
 using System.IO;
 using Le6pergram.Web.ViewModels;
+using Le6pergram.Web.Controllers;
 
 namespace Le6pergram.Web
 {
@@ -33,7 +34,19 @@ namespace Le6pergram.Web
             {
                 return HttpNotFound();
             }
-            return View(picture);
+            PictureDetailsViewModel pictureToView = new PictureDetailsViewModel()
+            {
+                Id = picture.Id,
+                Content = picture.Content,
+                Description = picture.Description,
+                Tags = picture.Tags,
+                UserId = picture.UserId,
+                Likes = picture.Likes,
+                User = picture.User,
+                Comments = picture.Comments
+            };
+
+            return View(pictureToView);
         }
 
         // GET: Pictures/Create
@@ -159,6 +172,16 @@ namespace Le6pergram.Web
             pic.Likes.Remove(user);
             db.SaveChanges();
             return RedirectToAction($"Details/{id}");
+        }
+
+        [ActionName("AddComment")]
+        public ActionResult AddComment()
+        {
+            string newComment;
+            newComment = Request.Form["NewComment"];
+            int id = int.Parse(Request.Form["currentID"]);
+            CommentsController.InsertComment(newComment, id);
+            return RedirectToAction("Details/" + id);
         }
 
         private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
