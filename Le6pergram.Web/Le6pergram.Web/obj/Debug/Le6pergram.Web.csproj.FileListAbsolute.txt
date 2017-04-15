@@ -141,3 +141,4 @@ C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6p
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.pdb
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Web\obj\Debug\Le6pergram.Web.csprojResolveAssemblyReference.cache

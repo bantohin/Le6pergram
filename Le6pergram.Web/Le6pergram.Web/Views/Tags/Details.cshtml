@@ -9,7 +9,15 @@
     <br />
     <h1 style="text-align: center;">#@Model.Name</h1>
     <br />
-    <h3 style="text-align: center;">@Model.Pictures.Count posts</h3>
+    @{ var postsCount = Model.Pictures.Count;}
+    @if (postsCount == 1)
+    {
+        <h3 style="text-align: center;">@postsCount photo</h3>
+    }
+    else
+    {
+        <h3 style="text-align: center;">@postsCount photos</h3>
+    }
     <hr />
     @foreach (var pic in Model.Pictures.OrderBy(p => p.Id).Take(20).ToList())
     {
