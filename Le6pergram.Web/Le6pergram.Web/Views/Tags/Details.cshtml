@@ -9,8 +9,14 @@
 
 <div>
     <br />
-    <h4>#@Model.Name</h4>
-    <hr />    
+    <h2 style="text-align: center;">#@Model.Name</h2>
+    <br />
+    <h4 style="text-align: center;">@Model.picturesCount posts</h4>
+    <hr />
+    @foreach (var pic in Model.Pictures.ToList())
+    {
+
+    }
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

@@ -14,15 +14,25 @@
             {
                 <a href="../../Tags/Details/@tag.Id">#@tag.Name </a>
             }
-            @if (!Model.Likes.Any(l => l.Id == AuthManager.GetAuthenticated().Id))
+            @if (AuthManager.GetAuthenticated() != null)
             {
-                <h5>@Html.ActionLink("Like", "Like", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+                if (!Model.Likes.Any(l => l.Id == AuthManager.GetAuthenticated().Id))
+                {
+                    <h5>@Html.ActionLink("Like", "Like", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+                }
+                else
+                {
+                    <h5>@Html.ActionLink("Unlike", "Unlike", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+                }
+            }
+            @if (Model.Likes.Count != 1)
+            {
+                <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) people</a> like this picture</h5>
             }
             else
             {
-                <h5>@Html.ActionLink("Unlike", "Unlike", "Pictures", new { id = Model.Id, loggedId = AuthManager.GetAuthenticated().Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+                <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) person</a> likes this picture</h5>
             }
-            <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) people</a> liked this picture</h5>
             <!-- Modal -->
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
