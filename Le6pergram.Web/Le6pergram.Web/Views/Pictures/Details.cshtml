@@ -30,11 +30,11 @@
 
             @if (Model.Likes.Count != 1)
             {
-                <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) people</a> like this picture</h5>
+                <h5><a data-toggle="modal" class="link" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) people</a> like this picture</h5>
             }
             else
             {
-                <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) person</a> likes this picture</h5>
+                <h5><a data-toggle="modal" class="link" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) person</a> likes this picture</h5>
             }
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog" style="overflow-y: initial !important">
@@ -51,11 +51,11 @@
                                 {
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <img src="data:image;base64,@System.Convert.ToBase64String(like.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                                            <img onclick="location.href='../../Users/Details/' + @like.Id"  src="data:image;base64,@System.Convert.ToBase64String(like.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                                         </div>
                                         <div class="col-sm-3">
                                             <br />
-                                            @Html.ActionLink(like.Username, "Details/" + like.Id, "Users")
+                                            @Html.ActionLink(like.Username, "Details/" + like.Id, "Users", new { @class = "link"})
                                         </div>
                                         <div class="col-sm-6">
                                             @if (loggedUser != null)
@@ -91,7 +91,7 @@
                     @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
                 </div>
                 <div class="col-sm-2">
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                    <img onclick="location.href='../../Users/Details/' + @Model.UserId"  src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                 </div>
                     @if (loggedUser != null && loggedUser.Id == Model.UserId)
                     {
@@ -109,7 +109,7 @@
                                 <input type="text" name="CurrentPictureID" style="display: none;" value="@Model.Id" />
                             </form>
                         }
-                        <div class="col-sm-2">@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users")</div>
+                        <div class="col-sm-2">@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users", new { @class = "link" })</div>
                         <div class="col-sm-offset-3 commentText">@comment.Content</div>
                         <hr />
                     }

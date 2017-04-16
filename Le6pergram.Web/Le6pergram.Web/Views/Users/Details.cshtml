@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <br />
-                                    @Html.ActionLink(followingUser.Username, "Details/" + followingUser.Id, "Users")
+                                    @Html.ActionLink(followingUser.Username, "Details/" + followingUser.Id, "Users", new { @class = "link" })
                                 </div>
                                 <div class="col-sm-6">
                                     @if (loggedUser != null)
@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <br />
-                                    @Html.ActionLink(follower.Username, "Details/" + follower.Id, "Users")
+                                    @Html.ActionLink(follower.Username, "Details/" + follower.Id, "Users", new { @class = "link" })
                                 </div>
                                 <div class="col-sm-6">
                                     @if (loggedUser != null)

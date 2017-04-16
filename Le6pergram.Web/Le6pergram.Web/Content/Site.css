@@ -66,3 +66,12 @@ textarea {
     word-wrap: break-word;
 }
 
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;    
+}
+
+.link:hover{
+    text-decoration:none;
+    font-weight:bold;
+    color: #585858;    

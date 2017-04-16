@@ -4,7 +4,7 @@
     ViewBag.Title = "Search results";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
 @{ var count = Model.Tags.Count + Model.Users.Count;}
 
 @if (Model.isAnythingFound)
@@ -18,14 +18,20 @@ else
 
 @foreach (var searchResult in Model.Users)
 {
-    <h4><a href="../Users/Details/@searchResult.Id">@searchResult.Username</a> (@searchResult.Name)</h4>
+    <h4><a class="link" href="../Users/Details/@searchResult.Id">@searchResult.Username</a>
+        @if (searchResult.Name != null)
+        {
+            <span>(@searchResult.Name)</span>
+        }
+        
+    </h4>
 }
 
 <br />
 
 @foreach(var searchResult in Model.Tags)
 {
-    <h4><a href="../Tags/Details/@searchResult.Id">#@searchResult.Name</a></h4>
+    <h4><a class="link"href="../Tags/Details/@searchResult.Id">#@searchResult.Name</a></h4>
 }
 
 
