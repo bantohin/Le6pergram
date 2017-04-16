@@ -17,11 +17,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>                
+                </button>
                 <img style="width: 143px; height: 55px;" class="le6pergramLogo" src="~/Content/le6pergram.jpg" onclick="location.href='@Url.Action("Index","Home")'" />
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">                    
+                <ul class="nav navbar-nav">
                     @if (currentUse == null)
                     {
                         <li>@Html.ActionLink("Register", "Create", "Users")</li>
@@ -40,14 +40,15 @@
                         </form>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (currentUse != null)
-                    {
+
+                @if (currentUse != null)
+                {
+                    <img src="~/Content/myprofile.JPG" onclick="location.href='../../Users/Details/' + @currentUse.Id" class="nav navbar-nav navbar-right" style="margin-top: 5px;" onmouseover="this.style.border='solid 1px #ddd'" onmouseout="this.style.border='none'"/>
+                    <ul class="nav navbar-nav navbar-right">
                         <li>@Html.ActionLink("Upload Photo", "Create", "Pictures")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
-                        <li>@Html.ActionLink("Hello " + currentUse.Username, "Details/" + currentUse.Id, "Users")</li>
-                    }
-                </ul>
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>                        
+                    </ul>                    
+                }
             </div>
         </div>
     </div>
