@@ -49,7 +49,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Upload" class="btn btn-default" />
+                <input type="submit" value="Upload" class="btn btn-default" id="pictureCreateSubmit" />
             </div>
         </div>
     </div>
@@ -57,3 +57,6 @@
 
 <div>    
 </div>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script>$('#pictureCreateSubmit').click(function () { $(document).ready(function () { $('#pictureCreateSubmit').attr("disabled", true); }) })</script>

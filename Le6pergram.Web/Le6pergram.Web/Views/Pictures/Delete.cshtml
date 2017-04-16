@@ -23,8 +23,11 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
+            <input type="submit" value="Delete" class="btn btn-default" id="deletePictureSubmit"/>
             @Html.ActionLink("Go back", "Details/" + Model.Id, "Pictures", htmlAttributes: new { @class = "btn btn-default" })
         </div>
     }
 </div>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script>$('#deletePictureSubmit').click(function () { $(document).ready(function () { $('#deletePictureSubmit').attr("disabled", true); }) })</script>

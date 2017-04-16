@@ -1,13 +1,12 @@
 ﻿@model Le6pergram.Models.User
-
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <br />
         <h4>Register user</h4>
@@ -43,16 +42,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type="password", placeholder="Password" } })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Password" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Confirm Password</label>
+            <label class="control-label col-md-2">Confirm Password</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RepeatPassword, "Repeat password",new { htmlAttributes = new { @class = "form-control", type="password", placeholder="Confirm Password" } })
+                @Html.EditorFor(model => model.RepeatPassword, "Repeat password", new { htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Confirm Password" } })
                 @Html.ValidationMessageFor(model => model.RepeatPassword, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -74,7 +73,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProfilePictureFile, "Profile picture",htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProfilePictureFile, "Profile picture", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.ProfilePictureFile, new { @class = "form-control", type = "file" })
             </div>
@@ -82,14 +81,17 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-default" />
+                <input type="submit" value="Register" class="btn btn-default" id="registerSubmit" />
             </div>
         </div>
-    </div>
+    </div>    
 }
 
-<div>    
+<div>
 </div>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script>$('#registerSubmit').click(function () { $(document).ready(function () { $('#registerSubmit').attr("disabled", true); }) })</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

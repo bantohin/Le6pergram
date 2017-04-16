@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CreatePictureViewModel.cs" />
     <Compile Include="ViewModels\PictureDetailsViewModel.cs" />
-    <Compile Include="ViewModels\SearchUserViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

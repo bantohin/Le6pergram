@@ -1,6 +1,7 @@
 ﻿namespace Le6pergram.Web.Controllers
 {
     using Le6pergram.Models;
+    using Le6pergram.Models.ViewModels;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -17,13 +18,23 @@
             searchedWord = Request.Form["searchEngine"];
             if (searchedWord == null || searchedWord == "")
             {
-                IEnumerable<User> users = new List<User>();
-                return View(users);
+                SearchViewModel empty = new SearchViewModel()
+                {
+                    isAnythingFound = false
+                };
+                return View(empty);
             }
             else
             {
-                var users = db.Users.Where(u => u.Username.Contains(searchedWord)).ToList();
-                return View(users);
+                SearchViewModel model = new SearchViewModel()
+                {
+                    Tags = db.Tags.Where(t => t.Name.Contains(searchedWord)).ToList(),
+                    Users = db.Users.Where(u => u.Username.Contains(searchedWord)).ToList(),
+                    isAnythingFound = true
+                };
+                if (model.Tags.Count == 0 && model.Users.Count == 0)
+                    model.isAnythingFound = false;
+                return View(model);
             }
         }
     }

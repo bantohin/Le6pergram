@@ -104,7 +104,7 @@
                         if (loggedUser != null && comment.UserId == loggedUser.Id || (loggedUser != null && loggedUser.Id == Model.UserId ))
                         {
                             <form method="post">
-                                <button type="submit" class="close" formaction="../../Comments/DeleteComment">&times;</button>
+                                <button type="submit" class="close" formaction="../../Comments/DeleteComment" id="deleteCommentSubmit">&times;</button>
                                 <input type="text" name="currentCommentID" style="display: none;" value="@comment.Id" />
                                 <input type="text" name="CurrentPictureID" style="display: none;" value="@Model.Id" />
                             </form>
@@ -126,7 +126,7 @@
                             <div><input type="text" value="@Model.Id" style="display:none;" name="currentID" /></div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <button type="submit" class="btn btn-default" formaction="../../Comments/AddComment">
+                                    <button type="submit" class="btn btn-default" formaction="../../Comments/AddComment" id="addCommentSubmit">
                                         <i>Add comment</i>
                                     </button>
                                 </div>
@@ -142,3 +142,9 @@
 </div>
 <p>   
 </p>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script>$('#addCommentSubmit').click(function () { $(document).ready(function () { $('#addCommentSubmit').attr("disabled", true); }) }) 
+    $('#deleteCommentSubmit').click(function () { $(document).ready(function () { $('#deleteCommentSubmit').attr("disabled", true); }) })</script> 
+
+

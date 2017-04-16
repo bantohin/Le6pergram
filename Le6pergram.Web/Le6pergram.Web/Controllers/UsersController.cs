@@ -63,7 +63,7 @@
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "The username or the password are incorrect.";
+                    ViewBag.ErrorMessage = "The username or the password is incorrect.";
                     ViewBag.ShowError = true;
                     return View();
                 }
