@@ -51,6 +51,12 @@
         // GET: Pictures/Create
         public ActionResult Create()
         {
+            var authentication = AuthManager.GetAuthenticated();
+            if(authentication == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
             if (ViewBag.ShowError == null)
                 ViewBag.ShowError = false;
 
@@ -129,13 +135,21 @@
 
         // GET: Pictures/Delete/5
         public ActionResult Delete(int? id)
-        {
+        {            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Picture picture = db.Pictures.Find(id);
-            if (picture == null)
+
+            var authentication = AuthManager.GetAuthenticated();
+            if (authentication == null || authentication.Id != picture.UserId)
+            {
+                return RedirectToAction("Details/" + picture.Id, "Pictures");
+            }
+
+                if (picture == null)
             {
                 return HttpNotFound();
             }

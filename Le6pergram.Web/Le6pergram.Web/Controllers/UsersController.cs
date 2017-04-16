@@ -99,7 +99,7 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user, HttpPostedFileBase profilePictureFile)
-        {            
+        {
             if (!UserValidations.ValidateEmail(user.Email))
             {
                 ViewBag.Error = "Your email is invalid. Please enter a valid one.";
@@ -107,7 +107,7 @@
                 return View();
             }
 
-            if(UserUtilities.IsEmailTaken(user.Email,db))
+            if (UserUtilities.IsEmailTaken(user.Email, db))
             {
                 ViewBag.Error = "Your with this email already exisitng.";
                 ViewBag.ShowError = true;
@@ -121,7 +121,7 @@
                 return View();
             }
 
-            if(UserUtilities.IsUserExisting(user.Username,db))
+            if (UserUtilities.IsUserExisting(user.Username, db))
             {
                 ViewBag.Error = "This username is taken. Please register with another one.";
                 ViewBag.ShowError = true;
@@ -173,6 +173,11 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);
+            var authentication = AuthManager.GetAuthenticated();
+            if (authentication == null || authentication.Id != user.Id)
+            {
+                return RedirectToAction("Details/" + user.Id, "Users");
+            }
             if (user == null)
             {
                 return HttpNotFound();
@@ -231,7 +236,7 @@
                 user.RegisterProfilePicture = PictureUtilities.PictureToByteArray(profilePictureFile);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details/" + AuthManager.GetAuthenticated().Id,"Users");
+                return RedirectToAction("Details/" + AuthManager.GetAuthenticated().Id, "Users");
             }
             return View(user);
         }
@@ -296,6 +301,6 @@
             userToUnfollow.Followers.Remove(userUnfollowing);
             db.SaveChanges();
             return RedirectToAction($"Details/{id}");
-        }       
+        }
     }
 }
