@@ -38,6 +38,12 @@
         // GET: Users/Login
         public ActionResult Login()
         {
+            var authentication = AuthManager.GetAuthenticated();
+            if (authentication != null)
+            {
+                return RedirectToAction("Details/" + authentication.Id, "Users");
+            }
+
             if (ViewBag.ShowError == null)
                 ViewBag.ShowError = false;
 
@@ -75,6 +81,12 @@
         // GET: Users/Create
         public ActionResult Create()
         {
+            var authentication = AuthManager.GetAuthenticated();
+            if (authentication != null)
+            {
+                return RedirectToAction("Details/" + authentication.Id, "Users");
+            }
+
             if (ViewBag.ShowError == null)
                 ViewBag.ShowError = false;
 
@@ -87,7 +99,7 @@
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user, HttpPostedFileBase profilePictureFile)
-        {
+        {            
             if (!UserValidations.ValidateEmail(user.Email))
             {
                 ViewBag.Error = "Your email is invalid. Please enter a valid one.";
@@ -95,9 +107,23 @@
                 return View();
             }
 
+            if(UserUtilities.IsEmailTaken(user.Email,db))
+            {
+                ViewBag.Error = "Your with this email already exisitng.";
+                ViewBag.ShowError = true;
+                return View();
+            }
+
             if (!UserValidations.ValidateUsername(user.Username))
             {
                 ViewBag.Error = "Your username is invalid. It should be between 3 and 50 characters long.";
+                ViewBag.ShowError = true;
+                return View();
+            }
+
+            if(UserUtilities.IsUserExisting(user.Username,db))
+            {
+                ViewBag.Error = "This username is taken. Please register with another one.";
                 ViewBag.ShowError = true;
                 return View();
             }

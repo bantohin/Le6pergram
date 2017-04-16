@@ -152,6 +152,7 @@
     <Compile Include="Utilities\AuthenticationManager.cs" />
     <Compile Include="Utilities\PictureUtilities.cs" />
     <Compile Include="Utilities\TagUtilities.cs" />
+    <Compile Include="Utilities\UserUtilities.cs" />
     <Compile Include="Validations\UserValidations.cs" />
   </ItemGroup>
   <ItemGroup>
