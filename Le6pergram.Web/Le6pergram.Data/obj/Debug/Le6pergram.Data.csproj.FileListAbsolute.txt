@@ -20,3 +20,14 @@ C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6p
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.csprojResolveAssemblyReference.cache
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.dll
 C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.pdb
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Data.dll
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Data.pdb
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.dll
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Models.dll
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Models.pdb
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.xml
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.csprojResolveAssemblyReference.cache
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.dll
+D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.pdb

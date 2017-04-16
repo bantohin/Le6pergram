@@ -19,11 +19,12 @@
             </div>
             <div class="container col-md-4">
                 Following:
-                <b>@Html.DisplayFor(model => model.Following.Count)</b>
+                <a data-toggle="modal" data-target="#myModal1"><b>@Html.DisplayFor(model => model.Following.Count)</b></a>
             </div>
             <div class="containter col-md-4">
                 Followers:
-                <b>@Html.DisplayFor(model => model.Followers.Count)</b>
+                <!-- Trigger the modal with a button -->                
+                <a data-toggle="modal" data-target="#myModal2"><b>@Html.DisplayFor(model => model.Followers.Count)</b></a>
             </div>
             <div class="container col-md-4">
                 <h2><i>@Html.DisplayFor(model => model.Username)</i></h2>
@@ -68,6 +69,113 @@
             }
         </div>
     </div><br><br>
+
+
+    <!-- Modal1 -->
+    <div id="myModal1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content1-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Following</h4>
+                </div>
+                <div class="modal-body" style="height: 500px; overflow-y:auto">
+                    @if (Model.Following.Count != 0)
+                    {
+                        foreach (var followingUser in Model.Following)
+                        {
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="data:image;base64,@System.Convert.ToBase64String(followingUser.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <br />
+                                    @Html.ActionLink(followingUser.Username, "Details/" + followingUser.Id, "Users")
+                                </div>
+                                <div class="col-sm-6">
+                                    @if (loggedUser != null)
+                                    {
+                                        if (loggedUser.Id != followingUser.Id && !followingUser.Followers.Any(u => u.Id == loggedUser.Id))
+                                        {
+                                            <div class="container col-md-4">
+                                                @Html.ActionLink("Follow", "Follow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                            </div>
+                                        }
+                                        else if (loggedUser.Id != followingUser.Id && followingUser.Followers.Any(u => u.Id == loggedUser.Id))
+                                        {
+                                            <div class="container col-md-4">
+                                                @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal2 -->
+    <div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content2-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Followers</h4>
+                </div>
+                <div class="modal-body" style="height: 500px; overflow-y:auto">
+                    @if (Model.Followers.Count != 0)
+                    {
+                        foreach (var follower in Model.Followers)
+                        {
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="data:image;base64,@System.Convert.ToBase64String(follower.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <br />
+                                    @Html.ActionLink(follower.Username, "Details/" + follower.Id, "Users")
+                                </div>
+                                <div class="col-sm-6">
+                                    @if (loggedUser != null)
+                                    {
+                                        if (loggedUser.Id != follower.Id && !follower.Followers.Any(u => u.Id == loggedUser.Id))
+                                        {
+                                            <div class="container col-md-4">
+                                                @Html.ActionLink("Follow", "Follow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                            </div>
+                                        }
+                                        else if (loggedUser.Id != follower.Id && follower.Followers.Any(u => u.Id == loggedUser.Id))
+                                        {
+                                            <div class="container col-md-4">
+                                                @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 <p>
 </p>

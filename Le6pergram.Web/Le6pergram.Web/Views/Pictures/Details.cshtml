@@ -4,7 +4,7 @@
     ViewBag.Title = Model.User.Username + "'s picture";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
 @{var loggedUser = AuthManager.GetAuthenticated();}
 <div>
     <div class="row" style="margin-top:50px">
@@ -37,14 +37,14 @@
                 <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) person</a> likes this picture</h5>
             }
             <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog" style="overflow-y: initial !important">
                     
                     <div class="modal-content">                       
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Likes</h4>
                             </div>                        
-                        <div class="modal-body">
+                        <div class="modal-body" style="height: 500px; overflow-y:auto">
                             @if (Model.Likes.Count != 0)
                             {
                                 foreach (var like in Model.Likes)
