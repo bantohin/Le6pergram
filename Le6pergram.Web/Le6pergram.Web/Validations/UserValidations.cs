@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
-
-namespace Le6pergram.Web.Validations
+﻿namespace Le6pergram.Web.Validations
 {
+    using System.Text.RegularExpressions;
+    using System.Web;
+
     public class UserValidations
     {
         private static Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Le6pergram.Web.Models;
-
-namespace Le6pergram.Web
+﻿namespace Le6pergram.Web
 {
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using Le6pergram.Web.Utilities;
+    using Le6pergram.Models;
+
     public class TagsController : Controller
     {
         private Le6pergramDatabase db = new Le6pergramDatabase();
@@ -51,7 +50,7 @@ namespace Le6pergram.Web
             List<Tag> tagsList = new List<Tag>();
             foreach (var tag in arrayOfTagStrings)
             {
-                if (!IsTagExisting(tag, context))
+                if (!TagUtilities.IsTagExisting(tag, context))
                 {
                     var currentTag = new Tag()
                     {
@@ -74,12 +73,7 @@ namespace Le6pergram.Web
                 currentPicture.Tags.Add(tag);
             }
             return currentPicture;
-        }
-
-        private static bool IsTagExisting(string tag, Le6pergramDatabase context)
-        {
-            return context.Tags.Any(t => t.Name == tag);
-        }
+        }        
 
         // GET: Tags/Edit/5
         public ActionResult Edit(int? id)

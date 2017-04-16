@@ -1,13 +1,9 @@
-﻿@model Le6pergram.Web.User
+﻿@model Le6pergram.Models.User
 
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@*<h2>Create</h2>*@
-
-
 @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
@@ -81,8 +77,7 @@
     </div>
 }
 
-<div>
-    @*@Html.ActionLink("Back to List", "Index")*@
+<div>    
 </div>
 
 @section Scripts {

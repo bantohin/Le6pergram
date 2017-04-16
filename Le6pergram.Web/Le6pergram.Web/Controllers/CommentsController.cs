@@ -1,13 +1,9 @@
-﻿using Le6pergram.Web.Models;
-using Le6pergram.Web.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Le6pergram.Web.Controllers
+﻿namespace Le6pergram.Web.Controllers
 {
+    using Le6pergram.Models;
+    using Le6pergram.Web.Utilities;
+    using System.Web.Mvc;
+
     public class CommentsController : Controller
     {
         private static Le6pergramDatabase db = new Le6pergramDatabase();       

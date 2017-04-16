@@ -1,11 +1,9 @@
-﻿@model Le6pergram.Web.ViewModels.CreatePictureViewModel
+﻿@model Le6pergram.Models.ViewModels.CreatePictureViewModel
 
 @{
     ViewBag.Title = "Upload picture";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@*<h2>Create</h2>*@
 
 @using (Html.BeginForm("Create", "Pictures", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
@@ -14,9 +12,7 @@
     <div class="form-horizontal">
         <br />
         <h4>Upload picture</h4>
-        <hr />
-        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-
+        <hr />        
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -47,6 +43,5 @@
     </div>
 }
 
-<div>
-    @*@Html.ActionLink("Back to List", "Index")*@
+<div>    
 </div>

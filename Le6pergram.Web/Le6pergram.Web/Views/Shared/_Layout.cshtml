@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @{ var currentUse = AuthManager.GetAuthenticated();}
     <div class="navbar navbar-inverse navbar-fixed-top" id="navBar">
         <div class="container">
             <div class="navbar-header">
@@ -16,14 +17,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                </button>                
                 <img style="width: 143px; height: 55px;" class="le6pergramLogo" src="~/Content/le6pergram.jpg" onclick="location.href='@Url.Action("Index","Home")'" />
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                    @if (AuthManager.GetAuthenticated() == null)
+                <ul class="nav navbar-nav">                    
+                    @if (currentUse == null)
                     {
                         <li>@Html.ActionLink("Register", "Create", "Users")</li>
                         <li>@Html.ActionLink("Login", "Login", "Users")</li>
@@ -42,11 +41,11 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (AuthManager.GetAuthenticated() != null)
+                    @if (currentUse != null)
                     {
                         <li>@Html.ActionLink("Upload Photo", "Create", "Pictures")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
-                        <li>@Html.ActionLink("Hello " + AuthManager.GetAuthenticated().Username, "Details/" + AuthManager.GetAuthenticated().Id, "Users")</li>
+                        <li>@Html.ActionLink("Hello " + currentUse.Username, "Details/" + currentUse.Id, "Users")</li>
                     }
                 </ul>
             </div>

@@ -1,4 +1,4 @@
-﻿@model List<Le6pergram.Web.Models.Picture>
+﻿@model List<Le6pergram.Models.Picture>
 @{
     ViewBag.Title = "le6pergram";
 }
@@ -30,7 +30,6 @@ else
                             <div class="col-sm-4 userInfoIndex">@picture.UploadDate.ToShortDateString()</div>
                         </div>
                         <img class="imgIndex" src="data:image;base64,@System.Convert.ToBase64String(picture.Content)" onclick="location.href='../../Pictures/Details/' + @picture.Id" />
-
                     </div>
                 </div>
                 <div class="col-sm-12"></div>

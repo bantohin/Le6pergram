@@ -1,4 +1,4 @@
-﻿@model Le6pergram.Web.ViewModels.PictureDetailsViewModel
+﻿@model Le6pergram.Models.ViewModels.PictureDetailsViewModel
 
 @{
     ViewBag.Title = Model.User.Username + "'s picture";
@@ -36,11 +36,9 @@
             {
                 <h5><a data-toggle="modal" data-target="#myModal">@Html.DisplayFor(model => model.Likes.Count) person</a> likes this picture</h5>
             }
-            <!-- Modal -->
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-
-                    <!-- Modal content-->
+                    
                     <div class="modal-content">                       
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -142,7 +140,5 @@
         </div>
     </div>
 </div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")*@
+<p>   
 </p>

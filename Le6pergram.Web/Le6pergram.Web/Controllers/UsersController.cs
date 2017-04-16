@@ -1,23 +1,15 @@
-﻿using Le6pergram.Web.Models;
-using Le6pergram.Web.Utilities;
-using Le6pergram.Web.Validations;
-using Le6pergram.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-
-namespace Le6pergram.Web
+﻿namespace Le6pergram.Web
 {
+    using Le6pergram.Models;
+    using Le6pergram.Web.Utilities;
+    using Le6pergram.Web.Validations;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.UI.WebControls;
+
     public class UsersController : Controller
     {
         private Le6pergramDatabase db = new Le6pergramDatabase();
@@ -121,7 +113,7 @@ namespace Le6pergram.Web
 
             if (ModelState.IsValid)
             {
-                user.RegisterProfilePicture = PictureToByteArray(profilePictureFile);
+                user.RegisterProfilePicture = PictureUtilities.PictureToByteArray(profilePictureFile);
                 db.Users.Add(user);
                 db.SaveChanges();
                 AuthManager.SetCurrentUser(user.Username, user.Password);
@@ -185,7 +177,7 @@ namespace Le6pergram.Web
 
             if (ModelState.IsValid)
             {
-                user.RegisterProfilePicture = PictureToByteArray(profilePictureFile);
+                user.RegisterProfilePicture = PictureUtilities.PictureToByteArray(profilePictureFile);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details/" + AuthManager.GetAuthenticated().Id,"Users");
@@ -253,15 +245,6 @@ namespace Le6pergram.Web
             userToUnfollow.Followers.Remove(userUnfollowing);
             db.SaveChanges();
             return RedirectToAction($"Details/{id}");
-        }
-
-        private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
-        {
-            MemoryStream stream = new MemoryStream();
-            contentFile.InputStream.CopyTo(stream);
-            byte[] data = stream.ToArray();
-
-            return data;
-        }
+        }       
     }
 }

@@ -1,12 +1,9 @@
-﻿using Le6pergram.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
-
-namespace Le6pergram.Web.Utilities
+﻿namespace Le6pergram.Web.Utilities
 {
+    using Le6pergram.Models;
+    using System;
+    using System.Linq;
+
     public class AuthManager
     {
         static User currentUser;

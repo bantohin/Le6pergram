@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Le6pergram.Web", "Le6pergram.Web\Le6pergram.Web.csproj", "{B7AE0A37-B70F-48D5-A45C-A88DEF6F4F30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Le6pergram.Models", "Le6pergram.Models\Le6pergram.Models.csproj", "{57D218C7-948E-45B3-AB89-8ABD237912B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Le6pergram.Data", "Le6pergram.Data\Le6pergram.Data.csproj", "{C207D496-7D66-4B29-87D1-48C4A8DC5502}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B7AE0A37-B70F-48D5-A45C-A88DEF6F4F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7AE0A37-B70F-48D5-A45C-A88DEF6F4F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7AE0A37-B70F-48D5-A45C-A88DEF6F4F30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D218C7-948E-45B3-AB89-8ABD237912B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D218C7-948E-45B3-AB89-8ABD237912B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D218C7-948E-45B3-AB89-8ABD237912B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D218C7-948E-45B3-AB89-8ABD237912B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C207D496-7D66-4B29-87D1-48C4A8DC5502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C207D496-7D66-4B29-87D1-48C4A8DC5502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C207D496-7D66-4B29-87D1-48C4A8DC5502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C207D496-7D66-4B29-87D1-48C4A8DC5502}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

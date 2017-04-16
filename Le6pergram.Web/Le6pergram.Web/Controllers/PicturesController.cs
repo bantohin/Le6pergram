@@ -1,17 +1,15 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Le6pergram.Web.Models;
-using System.IO;
-using Le6pergram.Web.ViewModels;
-using Le6pergram.Web.Controllers;
-using Le6pergram.Web.Utilities;
-
-namespace Le6pergram.Web
+﻿namespace Le6pergram.Web
 {
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+    using Le6pergram.Web.Utilities;
+    using Le6pergram.Models;
+    using Le6pergram.Models.ViewModels;
+
     public class PicturesController : Controller
     {
         private Le6pergramDatabase db = new Le6pergramDatabase();
@@ -72,7 +70,7 @@ namespace Le6pergram.Web
                 var description = picture.Description;
                 var contentFile = ContentFile;
 
-                var content = PictureToByteArray(contentFile);
+                var content = PictureUtilities.PictureToByteArray(contentFile);
                 var pictureEntity = new Picture()
                 {
                     Content = content,
@@ -173,15 +171,6 @@ namespace Le6pergram.Web
             pic.Likes.Remove(user);
             db.SaveChanges();
             return RedirectToAction($"Details/{id}");
-        }        
-
-        private byte[] PictureToByteArray(HttpPostedFileBase contentFile)
-        {
-            MemoryStream stream = new MemoryStream();
-            contentFile.InputStream.CopyTo(stream);
-            byte[] data = stream.ToArray();
-
-            return data;
         }
     }
 }

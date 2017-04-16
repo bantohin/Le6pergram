@@ -1,23 +1,17 @@
-﻿@model Le6pergram.Web.User
+﻿@model Le6pergram.Models.User
 
 @{
     ViewBag.Title = Model.Username + "'s profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Details</h2>*@
-
 <div>
-    @*<h4>User</h4>*@
     <br />
     <br />
     <div class="jumbotron row">
-        <div class="col-md-3">            
-                <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />            
+        <div class="col-md-3">
+            <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />
         </div>
-        @*<div class="container col-md-3">
-                @Html.DisplayFor(model => model.Username)
-            </div>*@
         <div class="col-md-9">
             <div class="container col-md-4">
                 Publications:
@@ -34,10 +28,10 @@
             <div class="container col-md-4">
                 <h2><i>@Html.DisplayFor(model => model.Username)</i></h2>
             </div>
-            @{ 
+            @{
                 var loggedUser = AuthManager.GetAuthenticated();
             }
-            @if (@*AuthManager.GetAuthenticated()*@ loggedUser != null && @*AuthManager.GetAuthenticated().Id*@ loggedUser.Id == Model.Id)
+            @if (loggedUser != null && loggedUser.Id == Model.Id)
             {
                 <div class="container col-md-4">
                     @Html.ActionLink("Edit your profile", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default", style = "margin-top: 22px" })
@@ -45,26 +39,22 @@
             }
             else
             {
-                //var loggedUser = AuthManager.GetAuthenticated();
                 if (loggedUser != null)
                 {
                     if (loggedUser.Id != Model.Id && !Model.Followers.Any(u => u.Id == loggedUser.Id))
                     {
                         <div class="container col-md-4">
-                            @Html.ActionLink("Follow", "Follow", "Users", new { id = Model.Id, loggedId = @*AuthManager.GetAuthenticated().Id*@ loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                            @Html.ActionLink("Follow", "Follow", "Users", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
                         </div>
                     }
                     else if (loggedUser.Id != Model.Id && Model.Followers.Any(u => u.Id == loggedUser.Id))
                     {
                         <div class="container col-md-4">
-                            @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = Model.Id, loggedId = @*AuthManager.GetAuthenticated().Id*@ loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                            @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
                         </div>
                     }
                 }
             }
-            @*<div class="container col-md-4">
-                <h2><b>@Html.DisplayFor(model => model.Biography)</b></h2>
-            </div>*@
         </div>
         <hr />
     </div>
@@ -80,5 +70,4 @@
     </div><br><br>
 </div>
 <p>
-    @*@Html.ActionLink("Back to List", "Index")*@
 </p>
