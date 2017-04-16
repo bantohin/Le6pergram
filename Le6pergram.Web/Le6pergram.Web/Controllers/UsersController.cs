@@ -38,6 +38,9 @@
         // GET: Users/Login
         public ActionResult Login()
         {
+            if (ViewBag.ShowError == null)
+                ViewBag.ShowError = false;
+
             return View();
         }
 
@@ -60,8 +63,9 @@
                 }
                 else
                 {
-                    //TODO: clear form
-                    //TODO: show notification
+                    ViewBag.ErrorMessage = "The username or the password are incorrect.";
+                    ViewBag.ShowError = true;
+                    return View();
                 }
             }
 
@@ -71,6 +75,9 @@
         // GET: Users/Create
         public ActionResult Create()
         {
+            if (ViewBag.ShowError == null)
+                ViewBag.ShowError = false;
+
             return View();
         }
 
@@ -83,32 +90,37 @@
         {
             if (!UserValidations.ValidateEmail(user.Email))
             {
-                return RedirectToAction("Create");
-                //TODO: Add notification
+                ViewBag.Error = "Your email is invalid. Please enter a valid one.";
+                ViewBag.ShowError = true;
+                return View();
             }
 
             if (!UserValidations.ValidateUsername(user.Username))
             {
-                return RedirectToAction("Create");
-                //TODO: Add notification
+                ViewBag.Error = "Your username is invalid. It should be between 3 and 50 characters long.";
+                ViewBag.ShowError = true;
+                return View();
             }
 
             if (!UserValidations.ValidatePassword(user.Password))
             {
-                return RedirectToAction("Create");
-                //TODO: Add notification
+                ViewBag.Error = "Your password is invalid. It should be at least 8 characters long, contain at least one small and one big letter and one digit.";
+                ViewBag.ShowError = true;
+                return View();
             }
 
             if (!UserValidations.ValidateRepeatedPassword(user.Password, user.RepeatPassword))
             {
-                return RedirectToAction("Create");
-                //TODO: Add notification
+                ViewBag.Error = "Your passwords do not match.";
+                ViewBag.ShowError = true;
+                return View();
             }
 
             if (!UserValidations.ValidateProfilePicture(profilePictureFile))
             {
-                return RedirectToAction("Create");
-                //TODO: Add notification
+                ViewBag.Error = "You have not chosen a profile picture.";
+                ViewBag.ShowError = true;
+                return View();
             }
 
             if (ModelState.IsValid)
@@ -127,6 +139,9 @@
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (ViewBag.ShowError == null)
+                ViewBag.ShowError = false;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -147,31 +162,41 @@
         {
             if (!UserValidations.ValidateEmail(user.Email))
             {
-                return RedirectToAction("Edit");
+                ViewBag.Error = "Your email is invalid. Please enter a valid one.";
+                ViewBag.ShowError = true;
+                return View();
                 //TODO: Add notification
             }
 
             if (!UserValidations.ValidateUsername(user.Username))
             {
-                return RedirectToAction("Edit");
+                ViewBag.Error = "Your username is invalid. It should be between 3 and 50 characters long.";
+                ViewBag.ShowError = true;
+                return View();
                 //TODO: Add notification
             }
 
             if (!UserValidations.ValidatePassword(user.Password))
             {
-                return RedirectToAction("Edit");
+                ViewBag.Error = "Your password is invalid. It should be at least 8 characters long, contain at least one small and one big letter and one digit.";
+                ViewBag.ShowError = true;
+                return View();
                 //TODO: Add notification
             }
 
             if (!UserValidations.ValidateRepeatedPassword(user.Password, user.RepeatPassword))
             {
-                return RedirectToAction("Edit");
+                ViewBag.Error = "Your passwords do not match.";
+                ViewBag.ShowError = true;
+                return View();
                 //TODO: Add notification
             }
 
             if (!UserValidations.ValidateProfilePicture(profilePictureFile))
             {
-                return RedirectToAction("Edit");
+                ViewBag.Error = "You have not chosen a profile picture.";
+                ViewBag.ShowError = true;
+                return View();
                 //TODO: Add notification
             }
 

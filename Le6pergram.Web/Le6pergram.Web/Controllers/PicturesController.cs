@@ -51,6 +51,9 @@
         // GET: Pictures/Create
         public ActionResult Create()
         {
+            if (ViewBag.ShowError == null)
+                ViewBag.ShowError = false;
+
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name");
             return View();
         }
@@ -62,6 +65,12 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,Description,Content")] CreatePictureViewModel picture, string tags, HttpPostedFileBase ContentFile)
         {
+            if (ContentFile == null)
+            {
+                ViewBag.Error = "You have not chosen a picture.";
+                ViewBag.ShowError = true;
+                return View();
+            }
 
             if (ModelState.IsValid)
             {

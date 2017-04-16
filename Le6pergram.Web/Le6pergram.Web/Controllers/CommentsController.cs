@@ -26,6 +26,10 @@
             string newComment;
             newComment = Request.Form["NewComment"];
             int pictureId = int.Parse(Request.Form["currentID"]);
+            if (newComment == "")
+            {
+                return RedirectToAction("Details/" + pictureId, "Pictures");
+            }
             int userId = AuthManager.GetAuthenticated().Id;
             Comment comment = new Comment()
             {

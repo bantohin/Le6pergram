@@ -10,7 +10,7 @@
 
         public static bool ValidateEmail(string email)
         {
-            if (emailRegex.IsMatch(email))
+            if (email != null && emailRegex.IsMatch(email))
                 return true;
             else
                 return false;
@@ -18,7 +18,7 @@
 
         public static bool ValidateUsername(string username)
         {
-            if (username.Length < 3 || username.Length > 50)
+            if (username == null || username.Length < 3 || username.Length > 50)
                 return false;
             else
                 return true;
@@ -26,7 +26,7 @@
 
         public static bool ValidatePassword(string pass)
         {
-            if (passRegex.IsMatch(pass))
+            if (pass != null && passRegex.IsMatch(pass))
                 return true;
             else
                 return false;

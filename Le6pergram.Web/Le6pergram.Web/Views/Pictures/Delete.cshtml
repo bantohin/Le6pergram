@@ -24,6 +24,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" />
+            @Html.ActionLink("Go back", "Details/" + Model.Id, "Pictures", htmlAttributes: new { @class = "btn btn-default" })
         </div>
     }
 </div>
