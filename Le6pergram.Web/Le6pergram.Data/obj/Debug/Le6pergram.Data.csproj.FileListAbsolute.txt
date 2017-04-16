@@ -9,3 +9,14 @@ D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.csprojResolveAssemblyReference.cache
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.dll
 D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.pdb
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Data.dll
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Data.pdb
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.dll
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Models.dll
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\Le6pergram.Models.pdb
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.xml
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.csprojResolveAssemblyReference.cache
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.dll
+C:\Users\User1\Documents\SoftUni DB Fundamentals 2017\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.pdb

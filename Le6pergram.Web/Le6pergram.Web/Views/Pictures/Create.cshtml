@@ -13,6 +13,18 @@
         <br />
         <h4>Upload picture</h4>
         <hr />        
+
+        @{string errorMessage = ViewBag.Error;}
+
+        @if (ViewBag.ShowError)
+        {
+            <div>
+                <p class="text-danger">@errorMessage</p>
+            </div>
+
+            ViewBag.ShowError = false;
+        }
+
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -37,7 +49,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Upload" class="btn btn-default" />
             </div>
         </div>
     </div>
