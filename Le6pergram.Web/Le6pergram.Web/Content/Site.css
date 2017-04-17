@@ -107,3 +107,12 @@ textarea {
     width: 346px;
     height: 346px;
 }
+
+.heart-notification {
+    margin-right: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    border: solid 1px #ffffff;
+    height: 37px;
+    width: 37px;
+}
