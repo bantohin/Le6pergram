@@ -88,16 +88,16 @@
         <div class="col-sm-6">
             <div class="col-sm-12">
                 <div class="col-sm-2">
-                    @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
+                    <img onclick="location.href='../../Users/Details/' + @Model.UserId"  src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                 </div>
                 <div class="col-sm-2">
-                    <img onclick="location.href='../../Users/Details/' + @Model.UserId"  src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                    @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
                 </div>
                     @if (loggedUser != null && loggedUser.Id == Model.UserId)
                     {
                         <h5 class="col-sm-5">@Html.ActionLink("Delete picture", "Delete", "Pictures", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", id = "deletePictureBtn", style = "margin-top: 22px" })</h5>
                     }                
-                <div class="col-sm-12">
+                <div class="col-sm-12 commentSection">
                     <br />
                     @foreach (var comment in Model.Comments.ToList())
                     {
@@ -109,8 +109,7 @@
                                 <input type="text" name="CurrentPictureID" style="display: none;" value="@Model.Id" />
                             </form>
                         }
-                        <div class="col-sm-2">@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users", new { @class = "link" })</div>
-                        <div class="col-sm-offset-3 commentText">@comment.Content</div>
+                        <div class="commentText"><span>@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users", new { @class = "link" })</span> @comment.Content</div>
                         <hr />
                     }
                 </div>

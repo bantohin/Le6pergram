@@ -28,4 +28,6 @@ public class Le6pergramDatabase : DbContext
     public virtual DbSet<Tag> Tags { get; set; }  
     
     public virtual DbSet<Comment> Comments { get; set; }
+
+    public virtual DbSet<Notification> Notifications { get; set; }
 }

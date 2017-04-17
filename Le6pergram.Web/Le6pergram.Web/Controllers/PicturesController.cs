@@ -183,6 +183,8 @@
             var user = db.Users.Find(loggedId);
             pic.Likes.Add(user);
             db.SaveChanges();
+
+            Controllers.NotificationsController.AddLikeNotification(loggedId, id, pic.UserId);
             return RedirectToAction($"Details/{id}");
         }
 

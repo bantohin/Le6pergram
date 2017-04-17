@@ -14,6 +14,7 @@
             this.Following = new HashSet<User>();
             this.Comments = new HashSet<Comment>();
             this.LikedPictures = new HashSet<Picture>();
+            this.Notifications = new HashSet<Notification>();
         }
 
         public int Id { get; set; }
@@ -49,5 +50,7 @@
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<Picture> LikedPictures { get; set; }
+
+        public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

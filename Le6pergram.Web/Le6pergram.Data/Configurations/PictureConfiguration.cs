@@ -8,6 +8,8 @@
         public PictureConfiguration()
         {
             this.HasMany(p => p.Comments).WithRequired(c => c.Picture).WillCascadeOnDelete(true);
+
+            this.HasMany(p => p.Notifications).WithOptional(n => n.Picture).WillCascadeOnDelete(false);
         }
     }
 }

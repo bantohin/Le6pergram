@@ -12,6 +12,7 @@
             this.Likes = new HashSet<User>();
             this.Tags = new HashSet<Tag>();
             this.UploadDate = DateTime.Now;
+            this.Notifications = new HashSet<Notification>();
         }
 
         public int Id { get; set; }
@@ -32,5 +33,7 @@
         public virtual ICollection<User> Likes { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
+
+        public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

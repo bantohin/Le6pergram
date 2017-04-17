@@ -44,10 +44,11 @@
 
                 @if (currentUse != null)
                 {
-                    <img src="~/Content/myprofile.JPG" onclick="location.href='../../Users/Details/' + @currentUse.Id" class="nav navbar-nav navbar-right" style="margin-top: 5px;" onmouseover="this.style.border='solid 1px #ddd'" onmouseout="this.style.border='none'"/>
+                    @*<img src="~/Content/myprofile.JPG" onclick="location.href='../../Users/Details/' + @currentUse.Id" class="nav navbar-nav navbar-right" style="margin-top: 5px;" onmouseover="this.style.border='solid 1px #ddd'" onmouseout="this.style.border='none'"/>*@
                     <ul class="nav navbar-nav navbar-right">
                         <li>@Html.ActionLink("Upload Photo", "Create", "Pictures")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>                        
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>   
+                        <li><img src="~/Content/myprofile.JPG" onclick="location.href='../../Users/Details/' + @currentUse.Id" class="nav navbar-nav navbar-right" style="margin-top: 5px; border: solid 1px #ffffff" onmouseover="this.style.border='solid 1px #ddd'" onmouseout="this.style.border='solid 1px #ffffff'" /></li>
                     </ul>                    
                 }
             </div>

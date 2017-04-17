@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comment.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="User.cs" />

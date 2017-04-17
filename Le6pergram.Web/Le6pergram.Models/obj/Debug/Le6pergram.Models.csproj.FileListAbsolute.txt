@@ -22,6 +22,5 @@ D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Models\bin\Debug\Entity
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Models\bin\Debug\EntityFramework.SqlServer.dll
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Models\bin\Debug\EntityFramework.xml
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Models\bin\Debug\EntityFramework.SqlServer.xml
-D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Models\obj\Debug\Le6pergram.Models.csprojResolveAssemblyReference.cache
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Models\obj\Debug\Le6pergram.Models.dll
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Models\obj\Debug\Le6pergram.Models.pdb
