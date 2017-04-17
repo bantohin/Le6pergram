@@ -17,6 +17,8 @@
             Comment commentToDelete = db.Comments.Find(deleteCommentId);
             db.Comments.Remove(commentToDelete);
             db.SaveChanges();
+
+            NotificationsController.RemoveCommentNotification(commentToDelete, pictureId);
             return RedirectToAction("Details/" + pictureId, "Pictures");
         }
 
@@ -40,6 +42,8 @@
 
             db.Comments.Add(comment);
             db.SaveChanges();
+
+            NotificationsController.AddCommentNotification(pictureId, userId);
             return RedirectToAction("Details/" + pictureId,"Pictures");
         }
     }

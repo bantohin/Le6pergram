@@ -4,7 +4,9 @@
 
     public enum NotificationType
     {
-        Follow, Like
+        Follow,
+        Like,
+        Comment
     }
 
     public class Notification

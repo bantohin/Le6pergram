@@ -5,14 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     @{  var currentUse = AuthManager.GetAuthenticated();
         var context = new Le6pergramDatabase();
-        var notifications = context.Notifications.Where(n => n.ReceiverId == currentUse.Id).ToList();
+        var notifications = new List<Le6pergram.Models.Notification>();
+        if (currentUse != null)
+        {
+            notifications = context.Notifications.Where(n => n.ReceiverId == currentUse.Id).OrderByDescending(n => n.Date).ToList();
+        }
     }
     <div class="navbar navbar-inverse navbar-fixed-top" id="navBar">
         <div class="container">
@@ -47,35 +51,44 @@
 
                 @if (currentUse != null)
                 {
-                    @*<img src="~/Content/myprofile.JPG" onclick="location.href='../../Users/Details/' + @currentUse.Id" class="nav navbar-nav navbar-right" style="margin-top: 5px;" onmouseover="this.style.border='solid 1px #ddd'" onmouseout="this.style.border='none'"/>*@
                     <ul class="nav navbar-nav navbar-right">
                         <li>@Html.ActionLink("Upload Photo", "Create", "Pictures")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>   
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
                         <li>
                             <div class="dropdown">
                                 <img src="~/Content/heart.png" data-toggle="dropdown" class="nav navbar-nav navbar-right heart-notification" onmouseover="this.style.border='solid 1px #ddd'" onmouseout="this.style.border='solid 1px #ffffff'" />
                                 <ul class="dropdown-menu">
                                     @foreach (var notification in notifications)
                                     {
-                                        //NOTIFICATIONS
-                                        //NOTIFICATIONS
-                                        //NOTIFICATIONS
-                                        //NOTIFICATIONS
-                                        if (notification.Type == 0)
+                                        if (notification.Type.ToString() == "Follow")
                                         {
                                             <li>
                                                 <img onclick="location.href='../../Users/Details/' + @notification.SenderId" src="data:image;base64,@System.Convert.ToBase64String(notification.Sender.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
-                                            </li>                                            
+                                                <span>@notification.Sender.Name started following you.</span>
+                                            </li>
+                                        }
+                                        else if (notification.Type.ToString() == "Like")
+                                        {
+                                            <li>
+                                                <img onclick="location.href='../../Users/Details/' + @notification.SenderId" src="data:image;base64,@System.Convert.ToBase64String(notification.Sender.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                                                <span>@notification.Sender.Name liked your photo.</span>
+                                                <img onclick="location.href='../../Pictures/Details/' + @notification.PictureId" src="data:image;base64,@System.Convert.ToBase64String(notification.Picture.Content)" width="50" height="50" />
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <img onclick="location.href='../../Users/Details/' + @notification.SenderId" src="data:image;base64,@System.Convert.ToBase64String(notification.Sender.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
+                                                <span>@notification.Sender.Name commented on your photo.</span>
+                                                <img onclick="location.href='../../Pictures/Details/' + @notification.PictureId" src="data:image;base64,@System.Convert.ToBase64String(notification.Picture.Content)" width="50" height="50" />
+                                            </li>
                                         }
                                     }
-                                    <li><a href="#">HTML</a></li>
-                                    <li><a href="#">CSS</a></li>
-                                    <li><a href="#">JavaScript</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li><img src="~/Content/myprofile.JPG" onclick="location.href='../../Users/Details/' + @currentUse.Id" class="nav navbar-nav navbar-right" style="margin-top: 5px; border: solid 1px #ffffff" onmouseover="this.style.border='solid 1px #ddd'" onmouseout="this.style.border='solid 1px #ffffff'" /></li>
-                    </ul>                    
+                    </ul>
                 }
             </div>
         </div>
