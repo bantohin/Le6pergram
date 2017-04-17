@@ -109,7 +109,7 @@
 
             if (UserUtilities.IsEmailTaken(user.Email, db))
             {
-                ViewBag.Error = "Your with this email already exisitng.";
+                ViewBag.Error = "This email is already taken. Please register with another one.";
                 ViewBag.ShowError = true;
                 return View();
             }
@@ -123,7 +123,7 @@
 
             if (UserUtilities.IsUserExisting(user.Username, db))
             {
-                ViewBag.Error = "This username is taken. Please register with another one.";
+                ViewBag.Error = "This username is already taken. Please register with another one.";
                 ViewBag.ShowError = true;
                 return View();
             }
