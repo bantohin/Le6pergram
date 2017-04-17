@@ -24,5 +24,30 @@ namespace Le6pergram.Web.Controllers
             db.Notifications.Add(notification);
             db.SaveChanges();
         }
+
+        public static void RemoveLikeNotification(int senderId, int pictureId)
+        {
+            db.Notifications.Remove(db.Notifications.Where(n => n.SenderId == senderId && n.PictureId == pictureId).First());
+            db.SaveChanges();
+        }
+
+        public static void AddFollowNotification(int senderId, int receiverId)
+        {
+            var notification = new Notification()
+            {
+                ReceiverId = receiverId,
+                SenderId = senderId,
+                Type = (NotificationType)int.Parse("0")                
+            };
+
+            db.Notifications.Add(notification);
+            db.SaveChanges();
+        }
+
+        public static void RemoveFollowNotification(int senderId, int receiverId)
+        {
+            db.Notifications.Remove(db.Notifications.Where(n => n.Type == 0 && n.ReceiverId == receiverId && n.SenderId == senderId).First());
+            db.SaveChanges();
+        }
     }
 }

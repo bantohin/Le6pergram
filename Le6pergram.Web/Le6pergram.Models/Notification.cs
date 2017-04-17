@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Le6pergram.Models
+﻿namespace Le6pergram.Models
 {
+    using System;
 
     public enum NotificationType
     {
@@ -14,6 +9,11 @@ namespace Le6pergram.Models
 
     public class Notification
     {
+        public Notification()
+        {
+            this.Date = DateTime.Now;
+        }
+
         public int Id { get; set; }
 
         public int SenderId { get; set; }
@@ -29,5 +29,7 @@ namespace Le6pergram.Models
         public virtual Picture Picture { get; set; }
 
         public NotificationType Type { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

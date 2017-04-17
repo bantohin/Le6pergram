@@ -1,6 +1,7 @@
 ﻿namespace Le6pergram.Web
 {
     using Le6pergram.Models;
+    using Le6pergram.Web.Controllers;
     using Le6pergram.Web.Utilities;
     using Le6pergram.Web.Validations;
     using System.Data.Entity;
@@ -290,6 +291,8 @@
             User userFollowing = db.Users.Find(loggedId);
             userToFollow.Followers.Add(userFollowing);
             db.SaveChanges();
+
+            NotificationsController.AddFollowNotification(loggedId, id);
             return RedirectToAction($"Details/{id}");
         }
 
@@ -300,6 +303,8 @@
             User userUnfollowing = db.Users.Find(loggedId);
             userToUnfollow.Followers.Remove(userUnfollowing);
             db.SaveChanges();
+
+            NotificationsController.RemoveFollowNotification(loggedId, id);
             return RedirectToAction($"Details/{id}");
         }
     }

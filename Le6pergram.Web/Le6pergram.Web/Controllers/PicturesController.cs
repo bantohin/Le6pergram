@@ -9,6 +9,7 @@
     using Le6pergram.Web.Utilities;
     using Le6pergram.Models;
     using Le6pergram.Models.ViewModels;
+    using Le6pergram.Web.Controllers;
 
     public class PicturesController : Controller
     {
@@ -184,7 +185,7 @@
             pic.Likes.Add(user);
             db.SaveChanges();
 
-            Controllers.NotificationsController.AddLikeNotification(loggedId, id, pic.UserId);
+            NotificationsController.AddLikeNotification(loggedId, id, pic.UserId);
             return RedirectToAction($"Details/{id}");
         }
 
@@ -195,6 +196,8 @@
             var user = db.Users.Find(loggedId);
             pic.Likes.Remove(user);
             db.SaveChanges();
+
+            NotificationsController.RemoveLikeNotification(loggedId, id);
             return RedirectToAction($"Details/{id}");
         }
     }
