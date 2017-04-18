@@ -26,7 +26,7 @@ else
                             <div class="col-sm-4">
                                 <img class="profilePictureIndex" src="data:image;base64,@System.Convert.ToBase64String(picture.User.RegisterProfilePicture)" onclick="location.href='../../Users/Details/' + @picture.UserId" />
                             </div>
-                            <div class="col-sm-4 userInfoIndex">@Html.ActionLink(picture.User.Username, "Details/" + picture.UserId, "Users", new { @class="link"})</div>
+                            <div class="col-sm-4 userInfoIndex">@Html.ActionLink(picture.User.Username, "Details/" + picture.UserId, "Users", null, new { @class="link"})</div>
                             <div class="col-sm-4 userInfoIndex">@picture.UploadDate.ToShortDateString()</div>
                         </div>
                         <img class="imgIndex" src="data:image;base64,@System.Convert.ToBase64String(picture.Content)" onclick="location.href='../../Pictures/Details/' + @picture.Id" />

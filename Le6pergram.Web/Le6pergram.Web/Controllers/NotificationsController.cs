@@ -1,12 +1,9 @@
-﻿using Le6pergram.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Le6pergram.Web.Controllers
+﻿namespace Le6pergram.Web.Controllers
 {
+    using Le6pergram.Models;
+    using System.Linq;
+    using System.Web.Mvc;
+
     public class NotificationsController : Controller
     {
         private static Le6pergramDatabase db = new Le6pergramDatabase();
@@ -30,7 +27,7 @@ namespace Le6pergram.Web.Controllers
 
         public static void RemoveLikeNotification(int senderId, int pictureId)
         {
-            db.Notifications.Remove(db.Notifications.Where(n => n.SenderId == senderId && n.PictureId == pictureId).First());
+            db.Notifications.Remove(db.Notifications.Where(n => n.Type.ToString() == "Like" &&  n.SenderId == senderId && n.PictureId == pictureId).First());
             db.SaveChanges();
         }
 

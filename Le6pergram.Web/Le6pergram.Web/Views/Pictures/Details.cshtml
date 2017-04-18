@@ -104,12 +104,12 @@
                         if (loggedUser != null && comment.UserId == loggedUser.Id || (loggedUser != null && loggedUser.Id == Model.UserId ))
                         {
                             <form method="post">
-                                <button type="submit" class="close" formaction="../../Comments/DeleteComment" id="deleteCommentSubmit">&times;</button>
+                                <button type="submit" class="close" formaction="../../Comments/DeleteComment" id="deleteCommentSubmit">&times;</button> 
                                 <input type="text" name="currentCommentID" style="display: none;" value="@comment.Id" />
                                 <input type="text" name="CurrentPictureID" style="display: none;" value="@Model.Id" />
                             </form>
                         }
-                        <div class="commentText"><span>@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users", new { @class = "link" })</span> @comment.Content</div>
+                        <div class="commentText"><span>@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users", null ,new { @class = "link" })</span> @comment.Content</div>
                         <hr />
                     }
                 </div>
