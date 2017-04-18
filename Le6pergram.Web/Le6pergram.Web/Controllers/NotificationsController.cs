@@ -55,27 +55,28 @@ namespace Le6pergram.Web.Controllers
 
         public static void AddCommentNotification(int picId, int senderId)
         {
-            var notification = new Notification()
+            int receiverId = db.Pictures.Find(picId).UserId;
+            if (receiverId != senderId)
             {
-                ReceiverId = db.Pictures.Find(picId).UserId,
-                SenderId = senderId,
-                PictureId = picId,
-                Type = (NotificationType)int.Parse("2")
-            };
+                var notification = new Notification()
+                {
+                    ReceiverId = receiverId,
+                    SenderId = senderId,
+                    PictureId = picId,
+                    Type = (NotificationType)int.Parse("2")
+                };
 
-            db.Notifications.Add(notification);
-            db.SaveChanges();
+                db.Notifications.Add(notification);
+                db.SaveChanges();
+            }
         }
 
         public static void RemoveCommentNotification(Comment comment, int pictureId)
         {
             var receiverId = db.Pictures.Find(pictureId).UserId;
             var senderId = comment.UserId;
-            if (receiverId != senderId)
-            {
                 db.Notifications.Remove(db.Notifications.Where(n => n.Type.ToString() == "Comment" && n.SenderId == senderId && n.ReceiverId == receiverId).FirstOrDefault());
                 db.SaveChanges();
-            }
         }
     }
 }
