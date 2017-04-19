@@ -62,26 +62,42 @@
                                     {
                                         if (notification.Type.ToString() == "Follow")
                                         {
-                                            <li>
+                                            <li class="notification" onclick="location.href='../../Users/Details/' + @notification.Sender.Id">
                                                 <img onclick="location.href='../../Users/Details/' + @notification.SenderId" src="data:image;base64,@System.Convert.ToBase64String(notification.Sender.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
-                                                <span>@notification.Sender.Name started following you.</span>
+                                                <span>@Html.ActionLink(notification.Sender.Name, "Details/" + notification.SenderId, "Users") started following you.</span>
+                                                @if (currentUse.Id != notification.SenderId && !notification.Sender.Followers.Any(u => u.Id == currentUse.Id))
+                                                {
+                                                <div style="display:inline">
+                                                    @Html.ActionLink("Follow", "Follow", "Users", new { id = notification.SenderId, loggedId = currentUse.Id }, new { @class = "btn btn-default"})
+                                                </div>
+                                                }
+                                                else if (currentUse.Id != notification.SenderId && notification.Sender.Followers.Any(u => u.Id == currentUse.Id))
+                                                {
+                                                <div>
+                                                    @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = notification.Sender.Id, loggedId = currentUse.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                                </div>
+                                                }
                                             </li>
+                                            <li><hr /></li>
+
                                         }
                                         else if (notification.Type.ToString() == "Like")
                                         {
-                                            <li>
+                                            <li class="notification"  onclick="location.href='../../Pictures/Details/' + @notification.Picture.Id">
                                                 <img onclick="location.href='../../Users/Details/' + @notification.SenderId" src="data:image;base64,@System.Convert.ToBase64String(notification.Sender.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                                                 <span>@notification.Sender.Name liked your photo.</span>
                                                 <img onclick="location.href='../../Pictures/Details/' + @notification.PictureId" src="data:image;base64,@System.Convert.ToBase64String(notification.Picture.Content)" width="50" height="50" />
                                             </li>
+                                            <li><hr /></li>
                                         }
                                         else
                                         {
-                                            <li>
+                                            <li class="notification" onclick="location.href='../../Pictures/Details/' + @notification.Picture.Id">
                                                 <img onclick="location.href='../../Users/Details/' + @notification.SenderId" src="data:image;base64,@System.Convert.ToBase64String(notification.Sender.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                                                 <span>@notification.Sender.Name commented on your photo.</span>
                                                 <img onclick="location.href='../../Pictures/Details/' + @notification.PictureId" src="data:image;base64,@System.Convert.ToBase64String(notification.Picture.Content)" width="50" height="50" />
                                             </li>
+                                            <li><hr /></li>
                                         }
                                     }
                                 </ul>

@@ -94,8 +94,7 @@
                                 <div class="col-sm-3">
                                     <img src="data:image;base64,@System.Convert.ToBase64String(followingUser.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                                 </div>
-                                <div class="col-sm-3">
-                                    <br />
+                                <div class="col-sm-3 usernameInModal">                                    
                                     @Html.ActionLink(followingUser.Username, "Details/" + followingUser.Id, "Users", new { @class = "link" })
                                 </div>
                                 <div class="col-sm-6">
@@ -104,13 +103,13 @@
                                         if (loggedUser.Id != followingUser.Id && !followingUser.Followers.Any(u => u.Id == loggedUser.Id))
                                         {
                                             <div class="container col-md-4">
-                                                @Html.ActionLink("Follow", "Follow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                                @Html.ActionLink("Follow", "Follow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                             </div>
                                         }
                                         else if (loggedUser.Id != followingUser.Id && followingUser.Followers.Any(u => u.Id == loggedUser.Id))
                                         {
                                             <div class="container col-md-4">
-                                                @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                                @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                             </div>
                                         }
                                     }
@@ -157,13 +156,13 @@
                                         if (loggedUser.Id != follower.Id && !follower.Followers.Any(u => u.Id == loggedUser.Id))
                                         {
                                             <div class="container col-md-4">
-                                                @Html.ActionLink("Follow", "Follow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                                @Html.ActionLink("Follow", "Follow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                             </div>
                                         }
                                         else if (loggedUser.Id != follower.Id && follower.Followers.Any(u => u.Id == loggedUser.Id))
                                         {
                                             <div class="container col-md-4">
-                                                @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                                @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                             </div>
                                         }
                                     }

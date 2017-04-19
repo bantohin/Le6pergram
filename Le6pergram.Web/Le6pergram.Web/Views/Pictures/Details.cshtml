@@ -63,13 +63,13 @@
                                                 if (loggedUser.Id != like.Id && !like.Followers.Any(u => u.Id == loggedUser.Id))
                                                 {
                                                     <div class="container col-md-4">
-                                                        @Html.ActionLink("Follow", "Follow", "Users", new { id = like.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                                        @Html.ActionLink("Follow", "Follow", "Users", new { id = like.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default"})
                                                     </div>
                                                 }
                                                 else if (loggedUser.Id != like.Id && like.Followers.Any(u => u.Id == loggedUser.Id))
                                                 {
                                                     <div class="container col-md-4">
-                                                        @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = like.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                                                        @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = like.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default"})
                                                     </div>
                                                 }
                                             }
@@ -90,12 +90,12 @@
                 <div class="col-sm-2">
                     <img onclick="location.href='../../Users/Details/' + @Model.UserId"  src="data:image;base64,@System.Convert.ToBase64String(Model.User.RegisterProfilePicture)" class="img-circle" width="50" height="50" />
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 usernameInModal">
                     @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
                 </div>
                     @if (loggedUser != null && loggedUser.Id == Model.UserId)
                     {
-                        <h5 class="col-sm-5">@Html.ActionLink("Delete picture", "Delete", "Pictures", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", id = "deletePictureBtn", style = "margin-top: 22px" })</h5>
+                        <h5 class="col-sm-5">@Html.ActionLink("Delete picture", "Delete", "Pictures", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", id = "deletePictureBtn"})</h5>
                     }                
                 <div class="col-sm-12 commentSection">
                     <br />

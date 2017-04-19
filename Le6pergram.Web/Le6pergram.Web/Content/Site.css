@@ -32,11 +32,12 @@ textarea {
     background-color: #fff;
     border-color: rgba(8, 8, 8, 0.28);
 }
-.navbar-inverse .navbar-nav > li > a:hover{
-    color: #000000;
-}
 
-.pictureIndex{
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color: #000000;
+    }
+
+.pictureIndex {
     background-color: #fff;
     border: 2px solid rgba(8, 8, 8, 0.25);
     width: 500px;
@@ -44,23 +45,23 @@ textarea {
     border-radius: 5px;
 }
 
-.pictureIndex img{
-    width: inherit;
-    padding:10px;
-}
+    .pictureIndex img {
+        width: inherit;
+        padding: 10px;
+    }
 
 .userInfo {
     margin-top: 10px;
 }
 
-.userInfoIndex{
-    margin-top:12px;
+.userInfoIndex {
+    margin-top: 12px;
 }
 
 .profilePictureIndex {
-    width:50px;
-    height:50px ;
-    border-radius:50%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 .commentText {
@@ -70,14 +71,14 @@ textarea {
 .link {
     text-decoration: none;
     font-weight: bold;
-    color: #000;    
+    color: #000;
 }
 
-.link:hover{
-    text-decoration:none;
-    font-weight:bold;
-    color: #585858;    
-}
+    .link:hover {
+        text-decoration: none;
+        font-weight: bold;
+        color: #585858;
+    }
 
 .commentSection {
     height: 365px;
@@ -117,4 +118,20 @@ textarea {
     width: 37px;
 }
 
-.dropdown
+.dropdown-menu {
+    width: 400px;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.usernameInModal {
+    margin-top: 15px;
+}
+
+.notification {
+    padding: 8px;
+}
+
+.notification:hover {
+    background-color: #fafafa;
+}
