@@ -72,8 +72,10 @@
         {
             var receiverId = db.Pictures.Find(pictureId).UserId;
             var senderId = comment.UserId;
-                db.Notifications.Remove(db.Notifications.Where(n => n.Type.ToString() == "Comment" && n.SenderId == senderId && n.ReceiverId == receiverId).FirstOrDefault());
-                db.SaveChanges();
+            var notification = db.Notifications.Where(n => n.Type.ToString() == "Comment" && n.SenderId == senderId && n.ReceiverId == receiverId).FirstOrDefault();
+            if(notification != null)
+                db.Notifications.Remove(notification);
+            db.SaveChanges();
         }
     }
 }

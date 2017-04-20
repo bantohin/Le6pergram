@@ -16,8 +16,7 @@
             int pictureId = int.Parse(Request.Form["CurrentPictureID"]);
             Comment commentToDelete = db.Comments.Find(deleteCommentId);
             db.Comments.Remove(commentToDelete);
-            db.SaveChanges();
-
+            db.SaveChanges();        
             NotificationsController.RemoveCommentNotification(commentToDelete, pictureId);
             return RedirectToAction("Details/" + pictureId, "Pictures");
         }

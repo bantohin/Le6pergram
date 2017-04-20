@@ -99,19 +99,22 @@
                     }                
                 <div class="col-sm-12 commentSection">
                     <br />
-                    @foreach (var comment in Model.Comments.ToList())
+                    @if (Model.Comments.ToList().Count > 0)
                     {
-                        if (loggedUser != null && comment.UserId == loggedUser.Id || (loggedUser != null && loggedUser.Id == Model.UserId ))
+                        foreach (var comment in Model.Comments.ToList())
                         {
-                            <form method="post">
-                                <button type="submit" class="close" formaction="../../Comments/DeleteComment" id="deleteCommentSubmit">&times;</button> 
-                                <input type="text" name="currentCommentID" style="display: none;" value="@comment.Id" />
-                                <input type="text" name="CurrentPictureID" style="display: none;" value="@Model.Id" />
-                            </form>
+                            if (loggedUser != null && comment.UserId == loggedUser.Id || (loggedUser != null && loggedUser.Id == Model.UserId))
+                            {
+                                <form method="post">
+                                    <button type="submit" class="close" formaction="../../Comments/DeleteComment" id="deleteCommentSubmit">&times;</button>
+                                    <input type="text" name="currentCommentID" style="display: none;" value="@comment.Id" />
+                                    <input type="text" name="CurrentPictureID" style="display: none;" value="@Model.Id" />
+                                </form>
+                            }
+                            <div class="commentText"><span>@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users", null, new { @class = "link" })</span> @comment.Content</div>
+                            <hr />
                         }
-                        <div class="commentText"><span>@Html.ActionLink(comment.User.Username, "Details/" + comment.UserId, "Users", null ,new { @class = "link" })</span> @comment.Content</div>
-                        <hr />
-                    }
+                    }                    
                 </div>
                 <div class="col-sm-12">
                     @if (loggedUser != null)

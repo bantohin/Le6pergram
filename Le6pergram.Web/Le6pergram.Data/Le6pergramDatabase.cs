@@ -17,7 +17,7 @@ public class Le6pergramDatabase : DbContext
 
         //modelBuilder.Entity<Tag>()
         //    .Ignore(t => t.picturesCount);
-
+       
         base.OnModelCreating(modelBuilder);
     }
 
