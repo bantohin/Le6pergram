@@ -7,7 +7,7 @@ public class Le6pergramDatabase : DbContext
 
     public Le6pergramDatabase() : base("name=Le6pergramDatabase")
     {
-        Database.SetInitializer(new DropCreateDatabaseAlways<Le6pergramDatabase>());
+      
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
