@@ -31,3 +31,7 @@ D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\bin\Debug\EntityFr
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.csprojResolveAssemblyReference.cache
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.dll
 D:\Softuni Projects\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.pdb
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.Migrations.InitialCreate.resources
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.csproj.GenerateResource.Cache
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.Migrations.PrivateAccountsProperty.resources
+D:\SoftUni\C# DB Fund. Jan 2017\Databases Adv. - EF - февруари 2017\Team Project\Le6pergram\Le6pergram\Le6pergram\Le6pergram.Web\Le6pergram.Data\obj\Debug\Le6pergram.Data.Migrations.NotificationsFix.resources

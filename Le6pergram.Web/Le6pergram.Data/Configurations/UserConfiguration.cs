@@ -29,6 +29,8 @@
                 m.ToTable("LikesOfPicture");
             });
 
+            this.HasMany(u => u.Notifications).WithRequired(n => n.Receiver);
+
             this.HasMany(u => u.Notifications).WithRequired(n => n.Receiver).WillCascadeOnDelete(false);
             this.HasMany(u => u.Notifications).WithRequired(n => n.Sender).WillCascadeOnDelete(false);
         }

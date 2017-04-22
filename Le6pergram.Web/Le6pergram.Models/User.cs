@@ -37,6 +37,8 @@
 
         public string Biography { get; set; }        
 
+        public bool IsPrivate { get; set; }
+
         public virtual ICollection<User> Followers { get; set; }
 
         public virtual ICollection<User> Following { get; set; }        

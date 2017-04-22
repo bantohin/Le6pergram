@@ -3,6 +3,7 @@
     using Le6pergram.Models;
     using System.Linq;
     using System.Web.Mvc;
+    using System;
 
     public class NotificationsController : Controller
     {
@@ -75,6 +76,19 @@
             var notification = db.Notifications.Where(n => n.Type.ToString() == "Comment" && n.SenderId == senderId && n.ReceiverId == receiverId).FirstOrDefault();
             if(notification != null)
                 db.Notifications.Remove(notification);
+            db.SaveChanges();
+        }
+
+        public static void AddRequestNotification(int senderId, int receiverId)
+        {
+            var notification = new Notification()
+            {
+                ReceiverId = receiverId,
+                SenderId = senderId,
+                Type = (NotificationType)int.Parse("3")
+            };
+
+            db.Notifications.Add(notification);
             db.SaveChanges();
         }
     }

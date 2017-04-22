@@ -99,7 +99,7 @@
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user, HttpPostedFileBase profilePictureFile)
+        public ActionResult Create([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography,IsPrivate")] User user, HttpPostedFileBase profilePictureFile)
         {
             if (!UserValidations.ValidateEmail(user.Email))
             {
@@ -190,7 +190,7 @@
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography")] User user, HttpPostedFileBase profilePictureFile)
+        public ActionResult Edit([Bind(Include = "Id,Name,Username,Password,Email,RepeatPassword,Biography,IsPrivate")] User user, HttpPostedFileBase profilePictureFile)
         {
             if (!UserValidations.ValidateEmail(user.Email))
             {
@@ -289,11 +289,18 @@
         {
             User userToFollow = db.Users.Find(id);
             User userFollowing = db.Users.Find(loggedId);
-            userToFollow.Followers.Add(userFollowing);
-            db.SaveChanges();
-
-            NotificationsController.AddFollowNotification(loggedId, id);
-            return RedirectToAction($"Details/{id}");
+            if (!userToFollow.IsPrivate)
+            {
+                userToFollow.Followers.Add(userFollowing);
+                db.SaveChanges();
+                NotificationsController.AddFollowNotification(loggedId, id);
+                return RedirectToAction($"Details/{id}");
+            }
+            else
+            {
+                NotificationsController.AddRequestNotification(loggedId, id);
+                return RedirectToAction($"Details/{id}");
+            }
         }
 
         [ActionName("Unfollow")]

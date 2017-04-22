@@ -6,7 +6,8 @@
     {
         Follow,
         Like,
-        Comment
+        Comment,
+        Request
     }
 
     public class Notification
