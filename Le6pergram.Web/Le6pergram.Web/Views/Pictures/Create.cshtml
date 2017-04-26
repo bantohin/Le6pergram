@@ -13,13 +13,11 @@
         <br />
         <h4>Upload picture</h4>
         <hr />        
-
-        @{string errorMessage = ViewBag.Error;}
-
+        
         @if (ViewBag.ShowError)
         {
             <div>
-                <p class="text-danger">@errorMessage</p>
+                <p class="text-danger">@ViewBag.Error</p>
             </div>
 
             ViewBag.ShowError = false;

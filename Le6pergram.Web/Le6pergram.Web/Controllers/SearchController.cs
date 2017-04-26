@@ -33,7 +33,10 @@
                     isAnythingFound = true
                 };
                 if (model.Tags.Count == 0 && model.Users.Count == 0)
-                    model.isAnythingFound = false;
+                {
+                    model.isAnythingFound = false;                    
+                }
+                ViewBag.Count = model.Tags.Count + model.Users.Count;
                 return View(model);
             }
         }

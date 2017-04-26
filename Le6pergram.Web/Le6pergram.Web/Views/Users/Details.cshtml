@@ -12,7 +12,7 @@
         <div class="col-md-3">
             <img src="data:image;base64,@System.Convert.ToBase64String(Model.RegisterProfilePicture)" width="152" height="152" class="img-circle" />
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9">r
             <div class="container col-md-4">
                 Publications:
                 <b>@Html.DisplayFor(model => model.Pictures.Count)</b>
@@ -27,30 +27,28 @@
             </div>
             <div class="container col-md-4">
                 <h2><i>@Html.DisplayFor(model => model.Username)</i></h2>
-            </div>
-            @{
-                var loggedUser = AuthManager.GetAuthenticated();
-            }
-            @if (loggedUser != null && loggedUser.Id == Model.Id)
+            </div>            
+            @if (ViewBag.IsLogged && ViewBag.CurrentUser.Id == Model.Id)
             {
                 <div class="container col-md-4">
                     @Html.ActionLink("Edit your profile", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-default", style = "margin-top: 22px" })
                 </div>
-            }
-            else
-            {
-                if (loggedUser != null)
-                {                    
-                    if (loggedUser.Id != Model.Id && !Model.Followers.Any(u => u.Id == loggedUser.Id))
-                    {
+                        }
+                        else
+                        {
+                            if (ViewBag.IsLogged)
+                            {
+                                if (ViewBag.CurrentUser.Id != Model.Id && !Model.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
+                                {
                         <div class="container col-md-4">
-                            @Html.ActionLink("Follow", "Follow", "Users", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                            @Html.ActionLink("Follow", "Follow", "Users", new { id = Model.Id, loggedId = ViewBag.CurrentUser.Id
+                }, new { @class = "btn btn-default", style = "margin-top: 22px" })
                         </div>
                     }
-                    else if (loggedUser.Id != Model.Id && Model.Followers.Any(u => u.Id == loggedUser.Id))
+                    else if (ViewBag.CurrentUser.Id != Model.Id && Model.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
                     {
                         <div class="container col-md-4">
-                            @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
+                            @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = Model.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })
                         </div>
                     }
                 }
@@ -62,7 +60,7 @@
         @*<hr />*@
     </div>
 
-    @if ((loggedUser == null && Model.IsPrivate) || ( loggedUser != null && loggedUser.Id != Model.Id && !Model.Followers.Any(f => f.Id == loggedUser.Id) && Model.IsPrivate))
+    @if ((!ViewBag.IsLogged && Model.IsPrivate) || ( ViewBag.IsLogged && ViewBag.CurrentUser.Id != Model.Id && !Model.Followers.Any(f => f.Id == ViewBag.CurrentUser.Id) && Model.IsPrivate))
     {
         <div class="container-fluid bg-3 text-center">
             <h3><i>This account is private. Follow it first in order to see its content.</i></h3>
@@ -72,11 +70,11 @@
     {
         <div class="container-fluid bg-3 text-center">
             <div class="row">
-                @if (Model.Pictures.Count == 0)
+                @if (!ViewBag.HasPhotos)
                 {
                     <h3>No photos</h3>
                 }
-                @foreach (var currentPicture in Model.Pictures.OrderByDescending(p => p.Id))
+                @foreach (var currentPicture in ViewBag.PicturesOrdered)
                 {
                     <div class="col-sm-4" style="width: 33%; margin-bottom: 15px;">
                         <img src="data:image;base64,@System.Convert.ToBase64String(currentPicture.Content)" class="img-responsive userDetailsPicture cover" style="width:100%" onclick="location.href='../../Pictures/Details/' + @currentPicture.Id">
@@ -97,7 +95,7 @@
                         <h4 class="modal-title">Following</h4>
                     </div>
                     <div class="modal-body" style="height: 500px; overflow-y:auto">
-                        @if (Model.Following.Count != 0)
+                        @if (ViewBag.IsFollowing)
                         {
                             foreach (var followingUser in Model.Following)
                             {
@@ -109,18 +107,18 @@
                                         @Html.ActionLink(followingUser.Username, "Details/" + followingUser.Id, "Users", new { @class = "link" })
                                     </div>
                                     <div class="col-sm-6">
-                                        @if (loggedUser != null)
+                                        @if (ViewBag.IsLogged)
                                         {
-                                            if (loggedUser.Id != followingUser.Id && !followingUser.Followers.Any(u => u.Id == loggedUser.Id))
+                                            if (ViewBag.CurrentUser.Id != followingUser.Id && !followingUser.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
                                             {
                                                 <div class="container col-md-4">
-                                                    @Html.ActionLink("Follow", "Follow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
+                                                    @Html.ActionLink("Follow", "Follow", "Users", new { id = followingUser.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                                 </div>
                                             }
-                                            else if (loggedUser.Id != followingUser.Id && followingUser.Followers.Any(u => u.Id == loggedUser.Id))
+                                            else if (ViewBag.CurrentUser.Id != followingUser.Id && followingUser.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
                                             {
                                                 <div class="container col-md-4">
-                                                    @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = followingUser.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
+                                                    @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = followingUser.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                                 </div>
                                             }
                                         }
@@ -149,7 +147,7 @@
                         <h4 class="modal-title">Followers</h4>
                     </div>
                     <div class="modal-body" style="height: 500px; overflow-y:auto">
-                        @if (Model.Followers.Count != 0)
+                        @if (ViewBag.HasFollowers)
                         {
                             foreach (var follower in Model.Followers)
                             {
@@ -162,18 +160,18 @@
                                         @Html.ActionLink(follower.Username, "Details/" + follower.Id, "Users", new { @class = "link" })
                                     </div>
                                     <div class="col-sm-6">
-                                        @if (loggedUser != null)
+                                        @if (ViewBag.IsLogged)
                                         {
-                                            if (loggedUser.Id != follower.Id && !follower.Followers.Any(u => u.Id == loggedUser.Id))
+                                            if (ViewBag.CurrentUser.Id != follower.Id && !follower.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
                                             {
                                                 <div class="container col-md-4">
-                                                    @Html.ActionLink("Follow", "Follow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
+                                                    @Html.ActionLink("Follow", "Follow", "Users", new { id = follower.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                                 </div>
                                             }
-                                            else if (loggedUser.Id != follower.Id && follower.Followers.Any(u => u.Id == loggedUser.Id))
+                                            else if (ViewBag.CurrentUser.Id != follower.Id && follower.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
                                             {
                                                 <div class="container col-md-4">
-                                                    @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = follower.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
+                                                    @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = follower.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", style = "margin-top: 15px" })
                                                 </div>
                                             }
                                         }

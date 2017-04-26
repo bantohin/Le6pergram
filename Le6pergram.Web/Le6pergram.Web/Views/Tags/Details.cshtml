@@ -8,15 +8,14 @@
 <div>
     <br />
     <h1 style="text-align: center;">#@Model.Name</h1>
-    <br />
-    @{ var postsCount = Model.Pictures.Count;}
-    @if (postsCount == 1)
+    <br />    
+    @if (ViewBag.PostsCount == 1)
     {
-        <h3 style="text-align: center;">@postsCount photo</h3>
+        <h3 style="text-align: center;">@ViewBag.PostsCount photo</h3>
     }
     else
     {
-        <h3 style="text-align: center;">@postsCount photos</h3>
+        <h3 style="text-align: center;">@ViewBag.PostsCount photos</h3>
     }
     <hr />
     <div class="row">

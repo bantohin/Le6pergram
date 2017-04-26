@@ -13,6 +13,7 @@
         public ActionResult Index()
         {
             User currentUser = AuthManager.GetAuthenticated();
+            ViewBag.IsLogged = currentUser != null;
             if (currentUser != null)
             {
                 List<Picture> list = new List<Picture>();

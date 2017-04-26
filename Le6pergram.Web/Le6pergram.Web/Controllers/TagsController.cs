@@ -31,6 +31,7 @@
             {
                 return HttpNotFound();
             }
+            ViewBag.PostsCount = tag.Pictures.Count;
             return View(tag);
         }
 

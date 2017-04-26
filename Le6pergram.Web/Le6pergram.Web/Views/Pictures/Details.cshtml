@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
-@{var loggedUser = AuthManager.GetAuthenticated();}
 <div>
     <div class="row" style="margin-top:50px">
         <div class="col-sm-6" style="text-align: center">
@@ -15,15 +14,15 @@
             {
                 <a href="../../Tags/Details/@tag.Id">#@tag.Name </a>
             }
-            @if (loggedUser != null)
+            @if (ViewBag.IsLogged)
             {
-                if (!Model.Likes.Any(l => l.Id == loggedUser.Id))
+                if (!ViewBag.CurrentUserLiked)
                 {
-                    <h5>@Html.ActionLink("Like", "Like", "Pictures", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+                    <h5>@Html.ActionLink("Like", "Like", "Pictures", new { id = Model.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
                 }
                 else
                 {
-                    <h5>@Html.ActionLink("Unlike", "Unlike", "Pictures", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
+                    <h5>@Html.ActionLink("Unlike", "Unlike", "Pictures", new { id = Model.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", style = "margin-top: 22px" })</h5>
                 }
             }
 
@@ -45,7 +44,7 @@
                                 <h4 class="modal-title">Likes</h4>
                             </div>                        
                         <div class="modal-body" style="height: 500px; overflow-y:auto">
-                            @if (Model.Likes.Count != 0)
+                            @if (ViewBag.HasLikes)
                             {
                                 foreach (var like in Model.Likes)
                                 {
@@ -58,18 +57,18 @@
                                             @Html.ActionLink(like.Username, "Details/" + like.Id, "Users", new { @class = "link"})
                                         </div>
                                         <div class="col-sm-6">
-                                            @if (loggedUser != null)
+                                            @if (ViewBag.IsLogged)
                                             {
-                                                if (loggedUser.Id != like.Id && !like.Followers.Any(u => u.Id == loggedUser.Id))
+                                                if (ViewBag.CurrentUser.Id != like.Id && !like.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
                                                 {
                                                     <div class="container col-md-4">
-                                                        @Html.ActionLink("Follow", "Follow", "Users", new { id = like.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default"})
+                                                        @Html.ActionLink("Follow", "Follow", "Users", new { id = like.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default"})
                                                     </div>
                                                 }
-                                                else if (loggedUser.Id != like.Id && like.Followers.Any(u => u.Id == loggedUser.Id))
+                                                else if (ViewBag.CurrentUser.Id != like.Id && like.Followers.Any(u => u.Id == ViewBag.CurrentUser.Id))
                                                 {
                                                     <div class="container col-md-4">
-                                                        @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = like.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default"})
+                                                        @Html.ActionLink("Unfollow", "Unfollow", "Users", new { id = like.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default"})
                                                     </div>
                                                 }
                                             }
@@ -93,17 +92,17 @@
                 <div class="col-sm-2 usernameInModal">
                     @Html.ActionLink(Model.User.Username, "Details/" + Model.UserId, "Users")
                 </div>
-                    @if (loggedUser != null && loggedUser.Id == Model.UserId)
+                    @if (ViewBag.IsLogged && ViewBag.CurrentUser.Id == Model.UserId)
                     {
-                        <h5 class="col-sm-5">@Html.ActionLink("Delete picture", "Delete", "Pictures", new { id = Model.Id, loggedId = loggedUser.Id }, new { @class = "btn btn-default", id = "deletePictureBtn"})</h5>
+                        <h5 class="col-sm-5">@Html.ActionLink("Delete picture", "Delete", "Pictures", new { id = Model.Id, loggedId = ViewBag.CurrentUser.Id }, new { @class = "btn btn-default", id = "deletePictureBtn"})</h5>
                     }                
                 <div class="col-sm-12 commentSection">
                     <br />
-                    @if (Model.Comments.ToList().Count > 0)
+                    @if (ViewBag.HasComments)
                     {
                         foreach (var comment in Model.Comments.ToList())
                         {
-                            if (loggedUser != null && comment.UserId == loggedUser.Id || (loggedUser != null && loggedUser.Id == Model.UserId))
+                            if (ViewBag.IsLogged && comment.UserId == ViewBag.CurrentUser.Id || (ViewBag.IsLogged && ViewBag.CurrentUser.Id == Model.UserId))
                             {
                                 <form method="post">
                                     <button type="submit" class="close" formaction="../../Comments/DeleteComment" id="deleteCommentSubmit">&times;</button>
@@ -117,7 +116,7 @@
                     }                    
                 </div>
                 <div class="col-sm-12">
-                    @if (loggedUser != null)
+                    @if (ViewBag.IsLogged)
                     {
                         <form method="post" class="form-inline">
                             <div class="form-group">

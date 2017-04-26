@@ -46,6 +46,12 @@
                 Comments = picture.Comments
             };
 
+            var authent = AuthManager.GetAuthenticated();
+            ViewBag.IsLogged = authent != null;
+            ViewBag.CurrentUser = authent;
+            ViewBag.HasComments = pictureToView.Comments.ToList().Count > 0;
+            ViewBag.HasLikes = pictureToView.Likes.ToList().Count > 0;
+            ViewBag.CurrentUserLiked = pictureToView.Likes.Any(l => l.Id == authent.Id);            
             return View(pictureToView);
         }
 

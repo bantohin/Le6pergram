@@ -33,6 +33,13 @@
             {
                 return HttpNotFound();
             }
+            var currentUser = AuthManager.GetAuthenticated();            
+            ViewBag.CurrentUser = currentUser;
+            ViewBag.IsLogged = currentUser != null;
+            ViewBag.HasPhotos = user.Pictures.Count > 0;
+            ViewBag.PicturesOrdered = user.Pictures.OrderByDescending(p => p.Id);
+            ViewBag.IsFollowing = user.Following.Count > 0;
+            ViewBag.HasFollowers = user.Followers.Count > 0;
             return View(user);
         }
 

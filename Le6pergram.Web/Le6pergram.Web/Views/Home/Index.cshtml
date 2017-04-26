@@ -3,7 +3,7 @@
     ViewBag.Title = "le6pergram";
 }
 
-@if (AuthManager.GetAuthenticated() == null)
+@if (!ViewBag.IsLogged)
 {
     <div class="jumbotron" style="text-align: center; background-color: white;">
         <img src="~/Content/le6pergram.jpg" />

@@ -12,14 +12,12 @@
         <br />
         <h4>Login user</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        @{string errorMessage = ViewBag.ErrorMessage;}
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })        
 
         @if (ViewBag.ShowError)
         {
             <div>
-                <p class="text-danger">@errorMessage</p>
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
             </div>
 
             ViewBag.ShowError = false;
