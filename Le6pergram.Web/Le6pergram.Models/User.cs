@@ -5,7 +5,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;
 
-    public class User
+    public class User : Entity
     {
         public User()
         {
@@ -15,9 +15,7 @@
             this.Comments = new HashSet<Comment>();
             this.LikedPictures = new HashSet<Picture>();
             this.Notifications = new HashSet<Notification>();
-        }
-
-        public int Id { get; set; }
+        }        
 
         public string Name { get; set; }
         

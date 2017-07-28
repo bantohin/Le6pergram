@@ -2,6 +2,7 @@
 {
     using Le6pergram.Models;
     using Le6pergram.Web.Controllers;
+    using Le6pergram.Web.Repositories;
     using Le6pergram.Web.Utilities;
     using Le6pergram.Web.Validations;
     using System.Data.Entity;
@@ -14,11 +15,12 @@
     public class UsersController : Controller
     {
         private Le6pergramDatabase db = new Le6pergramDatabase();
+        private UserRepository repo = new UserRepository();
 
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(this.repo.GetAll());
         }
 
         // GET: Users/Details/5
@@ -28,19 +30,33 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = this.repo.GetById(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            var currentUser = AuthManager.GetAuthenticated();            
+
+            var currentUser = AuthManager.GetAuthenticated();
+            ViewBag.ShowPrivateMsg = ShowPrivateAccountMsg(user, currentUser);
             ViewBag.CurrentUser = currentUser;
             ViewBag.IsLogged = currentUser != null;
             ViewBag.HasPhotos = user.Pictures.Count > 0;
             ViewBag.PicturesOrdered = user.Pictures.OrderByDescending(p => p.Id);
             ViewBag.IsFollowing = user.Following.Count > 0;
             ViewBag.HasFollowers = user.Followers.Count > 0;
+
             return View(user);
+        }
+
+        private bool ShowPrivateAccountMsg(User user, User currentUser)
+        {
+            if (currentUser == null && user.IsPrivate)
+                return true;
+            if (currentUser != null && currentUser.Id == user.Id)
+                return false;
+            if (currentUser != null && user.IsPrivate && !UserUtilities.IsFollowing(currentUser, user))
+                return true;
+            return true;
         }
 
         // GET: Users/Login
@@ -180,7 +196,7 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = repo.GetById(id.Value);
             var authentication = AuthManager.GetAuthenticated();
             if (authentication == null || authentication.Id != user.Id)
             {
@@ -242,8 +258,7 @@
             if (ModelState.IsValid)
             {
                 user.RegisterProfilePicture = PictureUtilities.PictureToByteArray(profilePictureFile);
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.Update(user);
                 return RedirectToAction("Details/" + AuthManager.GetAuthenticated().Id, "Users");
             }
             return View(user);
@@ -256,7 +271,7 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = repo.GetById(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
@@ -269,9 +284,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            repo.Delete(repo.GetById(id));
             return RedirectToAction("Index");
         }
 
@@ -292,32 +305,29 @@
         }
 
         [ActionName("Follow")]
-        public ActionResult Follow(int id, int loggedId)
+        public ActionResult Follow(int followedId, int followerId)
         {
-            User userToFollow = db.Users.Find(id);
-            User userFollowing = db.Users.Find(loggedId);
+            User userToFollow = repo.GetById(followedId);
+            User userFollowing = repo.GetById(followerId);
             if (!userToFollow.IsPrivate)
             {
-                userToFollow.Followers.Add(userFollowing);
-                db.SaveChanges();
-                NotificationsController.AddFollowNotification(loggedId, id);
-                return RedirectToAction($"Details/{id}");
+                this.repo.Follow(followedId, followerId);
+                //TODO: use notificatoins repository;
+                NotificationsController.AddFollowNotification(followerId, followedId);
+                return RedirectToAction($"Details/{followedId}");
             }
             else
             {
-                NotificationsController.AddRequestNotification(loggedId, id);
-                return RedirectToAction($"Details/{id}");
+                NotificationsController.AddRequestNotification(followerId, followedId);
+                return RedirectToAction($"Details/{followedId}");
             }
         }
 
         [ActionName("Unfollow")]
         public ActionResult Unfollow(int id, int loggedId)
         {
-            User userToUnfollow = db.Users.Find(id);
-            User userUnfollowing = db.Users.Find(loggedId);
-            userToUnfollow.Followers.Remove(userUnfollowing);
-            db.SaveChanges();
-
+            this.repo.Follow(id, loggedId);
+            //TODO: use notificatoins repository;
             NotificationsController.RemoveFollowNotification(loggedId, id);
             return RedirectToAction($"Details/{id}");
         }

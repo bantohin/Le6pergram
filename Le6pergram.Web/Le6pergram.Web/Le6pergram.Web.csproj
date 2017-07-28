@@ -145,6 +145,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\CommentRepository.cs" />
+    <Compile Include="Repositories\NotificationRepository.cs" />
+    <Compile Include="Repositories\PictureRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Utilities\GlobalSuppressions.cs" />
     <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

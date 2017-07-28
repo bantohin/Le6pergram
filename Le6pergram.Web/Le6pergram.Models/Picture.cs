@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Picture
+    public class Picture : Entity
     {
         public Picture()
         {
@@ -13,9 +13,7 @@
             this.Tags = new HashSet<Tag>();
             this.UploadDate = DateTime.Now;
             this.Notifications = new HashSet<Notification>();
-        }
-
-        public int Id { get; set; }
+        }        
 
         [ForeignKey("User")]
         public int UserId { get; set; }

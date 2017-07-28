@@ -10,14 +10,12 @@
         Request
     }
 
-    public class Notification
+    public class Notification : Entity
     {
         public Notification()
         {
             this.Date = DateTime.Now;
-        }
-
-        public int Id { get; set; }
+        }        
 
         public int SenderId { get; set; }
 
