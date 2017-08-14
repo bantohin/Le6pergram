@@ -14,7 +14,7 @@
     {
         public Notification()
         {
-            this.Date = DateTime.Now;
+            Date = DateTime.Now;
         }        
 
         public int SenderId { get; set; }

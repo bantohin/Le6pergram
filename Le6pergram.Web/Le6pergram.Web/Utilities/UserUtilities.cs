@@ -1,7 +1,7 @@
 ﻿namespace Le6pergram.Web.Utilities
 {
     using System.Linq;
-    using Le6pergram.Models;
+    using Models;
 
     public static class UserUtilities
     {

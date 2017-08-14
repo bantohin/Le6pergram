@@ -1,8 +1,6 @@
 ﻿namespace Le6pergram.Web.Controllers
 {
-    using Le6pergram.Models;
-    using Le6pergram.Models.ViewModels;
-    using System.Collections.Generic;
+    using Models.ViewModels;
     using System.Linq;
     using System.Web.Mvc;
 

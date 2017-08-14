@@ -6,10 +6,10 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-    using Le6pergram.Web.Utilities;
-    using Le6pergram.Models;
-    using Le6pergram.Models.ViewModels;
-    using Le6pergram.Web.Controllers;
+    using Utilities;
+    using Models;
+    using Models.ViewModels;
+    using Controllers;
 
     public class PicturesController : Controller
     {
@@ -88,7 +88,7 @@
             if (ModelState.IsValid)
             {
                 var tagsList = tags.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-                var currentUserId = Utilities.AuthManager.GetAuthenticated().Id;
+                var currentUserId = AuthManager.GetAuthenticated().Id;
                 var description = picture.Description;
                 var contentFile = ContentFile;
 

@@ -13,8 +13,8 @@ namespace Le6pergram.Web.Repositories
 
         public BaseRepository()
         {
-            this.context = new Le6pergramDatabase();
-            this.dbSet = context.Set<T>();
+            context = new Le6pergramDatabase();
+            dbSet = context.Set<T>();
         }
 
         public void Insert(T item)
@@ -59,7 +59,7 @@ namespace Le6pergram.Web.Repositories
 
         public void Dispose()
         {
-            this.context.Dispose();
+            context.Dispose();
         }
     }
 }

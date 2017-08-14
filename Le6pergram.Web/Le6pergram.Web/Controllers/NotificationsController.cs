@@ -1,9 +1,8 @@
 ﻿namespace Le6pergram.Web.Controllers
 {
-    using Le6pergram.Models;
+    using Models;
     using System.Linq;
     using System.Web.Mvc;
-    using System;
 
     public class NotificationsController : Controller
     {

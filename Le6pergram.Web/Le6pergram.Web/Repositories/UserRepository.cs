@@ -1,10 +1,10 @@
-﻿using Le6pergram.Models;
-
-namespace Le6pergram.Web.Repositories
+﻿namespace Le6pergram.Web.Repositories
 {
+    using Le6pergram.Models;
+
     public class UserRepository : BaseRepository<User>
     {
-       /
+       
         public void Follow(int userToFollow, int userFollowing)
         {
             using (Le6pergramDatabase context = new Le6pergramDatabase())

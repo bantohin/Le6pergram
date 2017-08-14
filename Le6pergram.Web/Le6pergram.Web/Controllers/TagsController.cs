@@ -1,13 +1,12 @@
 ﻿namespace Le6pergram.Web
 {
     using System.Collections.Generic;
-    using System.Data;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using Le6pergram.Web.Utilities;
-    using Le6pergram.Models;
+    using Utilities;
+    using Models;
 
     public class TagsController : Controller
     {

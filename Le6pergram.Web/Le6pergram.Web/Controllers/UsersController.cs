@@ -1,16 +1,14 @@
 ﻿namespace Le6pergram.Web
 {
-    using Le6pergram.Models;
-    using Le6pergram.Web.Controllers;
-    using Le6pergram.Web.Repositories;
-    using Le6pergram.Web.Utilities;
-    using Le6pergram.Web.Validations;
-    using System.Data.Entity;
+    using Models;
+    using Controllers;
+    using Repositories;
+    using Utilities;
+    using Validations;
     using System.Linq;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-    using System.Web.UI.WebControls;
 
     public class UsersController : Controller
     {
@@ -20,7 +18,7 @@
         // GET: Users
         public ActionResult Index()
         {
-            return View(this.repo.GetAll());
+            return View(repo.GetAll());
         }
 
         // GET: Users/Details/5
@@ -30,7 +28,7 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = this.repo.GetById(id.Value);
+            User user = repo.GetById(id.Value);
             if (user == null)
             {
                 return HttpNotFound();
@@ -185,7 +183,6 @@
         }
 
 
-
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -311,7 +308,7 @@
             User userFollowing = repo.GetById(followerId);
             if (!userToFollow.IsPrivate)
             {
-                this.repo.Follow(followedId, followerId);
+                repo.Follow(followedId, followerId);
                 //TODO: use notificatoins repository;
                 NotificationsController.AddFollowNotification(followerId, followedId);
                 return RedirectToAction($"Details/{followedId}");
@@ -326,7 +323,7 @@
         [ActionName("Unfollow")]
         public ActionResult Unfollow(int id, int loggedId)
         {
-            this.repo.Follow(id, loggedId);
+            repo.Follow(id, loggedId);
             //TODO: use notificatoins repository;
             NotificationsController.RemoveFollowNotification(loggedId, id);
             return RedirectToAction($"Details/{id}");

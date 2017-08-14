@@ -1,15 +1,15 @@
 ﻿namespace Le6pergram.Models.ViewModels
 {
-    using Le6pergram.Models;
+    using Models;
     using System.Collections.Generic;
 
     public class PictureDetailsViewModel
     {
         public PictureDetailsViewModel()
         {
-            this.Tags = new HashSet<Tag>();
-            this.Likes = new HashSet<User>();
-            this.Comments = new HashSet<Comment>();
+            Tags = new HashSet<Tag>();
+            Likes = new HashSet<User>();
+            Comments = new HashSet<Comment>();
         }
 
         public int Id { get; set; }

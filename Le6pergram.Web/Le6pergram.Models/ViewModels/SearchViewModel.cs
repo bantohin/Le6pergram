@@ -6,8 +6,8 @@
     {
         public SearchViewModel()
         {
-            this.Tags = new HashSet<Tag>();
-            this.Users = new HashSet<User>();
+            Tags = new HashSet<Tag>();
+            Users = new HashSet<User>();
         }
 
         public ICollection<Tag> Tags { get; set; }

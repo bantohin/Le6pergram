@@ -1,7 +1,7 @@
 ﻿namespace Le6pergram.Web.Controllers
 {
-    using Le6pergram.Models;
-    using Le6pergram.Web.Utilities;
+    using Models;
+    using Utilities;
     using System.Web.Mvc;
 
     public class CommentsController : Controller

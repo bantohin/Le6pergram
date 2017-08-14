@@ -6,7 +6,7 @@
     {
         public Tag()
         {
-            this.Pictures = new HashSet<Picture>();
+            Pictures = new HashSet<Picture>();
         }        
 
         public string Name { get; set; }

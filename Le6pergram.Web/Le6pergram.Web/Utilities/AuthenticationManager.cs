@@ -1,6 +1,6 @@
 ﻿namespace Le6pergram.Web.Utilities
 {
-    using Le6pergram.Models;
+    using Models;
     using System;
     using System.Linq;
 

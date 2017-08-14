@@ -9,12 +9,12 @@
     {
         public User()
         {
-            this.Pictures = new HashSet<Picture>();            
-            this.Followers = new HashSet<User>();
-            this.Following = new HashSet<User>();
-            this.Comments = new HashSet<Comment>();
-            this.LikedPictures = new HashSet<Picture>();
-            this.Notifications = new HashSet<Notification>();
+            Pictures = new HashSet<Picture>();            
+            Followers = new HashSet<User>();
+            Following = new HashSet<User>();
+            Comments = new HashSet<Comment>();
+            LikedPictures = new HashSet<Picture>();
+            Notifications = new HashSet<Notification>();
         }        
 
         public string Name { get; set; }

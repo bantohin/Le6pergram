@@ -8,11 +8,11 @@
     {
         public Picture()
         {
-            this.Comments = new HashSet<Comment>();
-            this.Likes = new HashSet<User>();
-            this.Tags = new HashSet<Tag>();
-            this.UploadDate = DateTime.Now;
-            this.Notifications = new HashSet<Notification>();
+            Comments = new HashSet<Comment>();
+            Likes = new HashSet<User>();
+            Tags = new HashSet<Tag>();
+            UploadDate = DateTime.Now;
+            Notifications = new HashSet<Notification>();
         }        
 
         [ForeignKey("User")]
